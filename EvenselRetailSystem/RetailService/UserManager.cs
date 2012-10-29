@@ -66,5 +66,44 @@ namespace Evensel.RetailService
                 }
             }
         }
+
+        public List<Role> UserAuthentication(string username, string password)
+        {
+            using (EvenselPOSEntities context = new EvenselPOSEntities())
+            {
+                var usrId = from n in context.Users
+                            where n.UserName == username && n.Password == password
+                            select n.ID;
+
+                if (usrId != null)
+                {
+                    var roleIds = from n in context.UserRoles
+                                where n.UserID.Equals(usrId)
+                                select n.RoleID;
+                    
+                    if (roleIds != null)
+                    {
+                        List<Role> roleList = new List<Role>();
+                        foreach (var id in roleIds)
+                        {
+                            var usrRoles = from n in context.Roles
+                                        where n.ID == id
+                                        select n;
+
+                            if (usrRoles != null)
+                            {
+                                return usrRoles.ToList();
+                            }
+                        }
+                                              
+                    }                 
+
+                }
+               
+            }
+
+            return null;
+            
+         }
     }
 }
