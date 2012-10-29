@@ -5,11 +5,11 @@ using System.Text;
 
 namespace RetailService
 {
-    public partial class User : Entity { }
-    public partial class Role : Entity { }
-    public partial class UserRole : Entity { }
-    public partial class Supplier : Entity { }
-    public partial class Item : Entity { }
-    public partial class Inventory : Entity { }
-    public partial class Module : Entity { }
+    public partial class User : IEntity { }
+    public partial class Role : IEntity { }
+    public partial class UserRole : IEntity { }
+    public partial class Supplier : IEntity { }
+    public partial class Item : IEntity { }
+    public partial class Inventory : IEntity { }
+    public partial class Module : IEntity { }
 }

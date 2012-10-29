@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RetailService
 {
-    public class Entity
+    public interface IEntity
     {
     }
 }

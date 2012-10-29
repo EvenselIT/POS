@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RetailService.Framework
 {
-    public abstract class AbstractManager<T> where T :Entity
+    public abstract class AbstractManager<T> where T :IEntity
     {
         public abstract int AddNew(T obj);
         public abstract List<T> SelectAll();
