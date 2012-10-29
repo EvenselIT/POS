@@ -71,6 +71,7 @@ namespace Evensel.RetailService
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
             {
+                List<Role> UsersroleList = new List<Role>();
                 var usrId = from n in context.Users
                             where n.UserName == username && n.Password == password
                             select n.ID;
@@ -85,15 +86,17 @@ namespace Evensel.RetailService
                     {
                         foreach (var id in roleIds)
                         {
-                            var usrRoles = from n in context.Roles
+                            var usrRole = from n in context.Roles
                                         where n.ID == id
                                         select n;
-
-                            if (usrRoles != null)
+                            
+                            if (usrRole != null)
                             {
-                                return usrRoles.ToList();
+                                UsersroleList.Add((Role)usrRole);
                             }
                         }
+
+                        return UsersroleList;
                                               
                     }                 
 
@@ -104,10 +107,5 @@ namespace Evensel.RetailService
             return null;
             
          }
-
-        public override void Update(User obj)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
