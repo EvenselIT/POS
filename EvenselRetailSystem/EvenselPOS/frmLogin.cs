@@ -29,7 +29,7 @@ namespace EvenselPOS
             if (usrRolesList != null)
             {
                 //if userRoleList is not null then uesr is a valid user cond....
-                MessageBox.Show("Valid User");
+                MessageBox.Show("Valid User");//test
             }
         }
     }
