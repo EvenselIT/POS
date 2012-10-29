@@ -80,22 +80,6 @@ namespace Evensel.RetailService
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Config> Configs
-        {
-            get
-            {
-                if ((_Configs == null))
-                {
-                    _Configs = base.CreateObjectSet<Config>("Configs");
-                }
-                return _Configs;
-            }
-        }
-        private ObjectSet<Config> _Configs;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Gift> Gifts
         {
             get
@@ -428,17 +412,25 @@ namespace Evensel.RetailService
             }
         }
         private ObjectSet<SalesDetail> _SalesDetails;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Config> Configs
+        {
+            get
+            {
+                if ((_Configs == null))
+                {
+                    _Configs = base.CreateObjectSet<Config>("Configs");
+                }
+                return _Configs;
+            }
+        }
+        private ObjectSet<Config> _Configs;
 
         #endregion
         #region AddTo Methods
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Configs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToConfigs(Config config)
-        {
-            base.AddObject("Configs", config);
-        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the Gifts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -607,6 +599,14 @@ namespace Evensel.RetailService
         {
             base.AddObject("SalesDetails", salesDetail);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Configs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToConfigs(Config config)
+        {
+            base.AddObject("Configs", config);
+        }
 
         #endregion
     }
@@ -710,11 +710,13 @@ namespace Evensel.RetailService
         /// <summary>
         /// Create a new Config object.
         /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
         /// <param name="key">Initial value of the Key property.</param>
         /// <param name="value">Initial value of the Value property.</param>
-        public static Config CreateConfig(global::System.String key, global::System.String value)
+        public static Config CreateConfig(global::System.Int32 id, global::System.String key, global::System.String value)
         {
             Config config = new Config();
+            config.ID = id;
             config.Key = key;
             config.Value = value;
             return config;
@@ -728,6 +730,33 @@ namespace Evensel.RetailService
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
         public global::System.String Key
         {
             get
@@ -736,14 +765,11 @@ namespace Evensel.RetailService
             }
             set
             {
-                if (_Key != value)
-                {
-                    OnKeyChanging(value);
-                    ReportPropertyChanging("Key");
-                    _Key = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("Key");
-                    OnKeyChanged();
-                }
+                OnKeyChanging(value);
+                ReportPropertyChanging("Key");
+                _Key = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Key");
+                OnKeyChanged();
             }
         }
         private global::System.String _Key;
@@ -753,7 +779,7 @@ namespace Evensel.RetailService
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String Value
         {
@@ -763,14 +789,11 @@ namespace Evensel.RetailService
             }
             set
             {
-                if (_Value != value)
-                {
-                    OnValueChanging(value);
-                    ReportPropertyChanging("Value");
-                    _Value = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("Value");
-                    OnValueChanged();
-                }
+                OnValueChanging(value);
+                ReportPropertyChanging("Value");
+                _Value = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Value");
+                OnValueChanged();
             }
         }
         private global::System.String _Value;
