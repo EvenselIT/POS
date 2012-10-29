@@ -6,7 +6,7 @@ using RetailService.Framework;
 
 namespace Evensel.RetailService
 {
-    class UserManager : AbstractManager <User>
+    public class UserManager : AbstractManager <User>
     {
         public override int AddNew(User obj)
         {
