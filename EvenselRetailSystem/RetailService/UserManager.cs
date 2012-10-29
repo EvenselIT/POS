@@ -78,6 +78,7 @@ namespace Evensel.RetailService
                 if (query != null)
                 {
                     User oldUser = query.SingleOrDefault();
+                    // check user object are not equal
                     if (true )
                     {
                        // update code should go hear
