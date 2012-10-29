@@ -105,5 +105,10 @@ namespace Evensel.RetailService
             return null;
             
          }
+
+        public override void Update(User obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

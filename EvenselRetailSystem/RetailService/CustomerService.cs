@@ -71,5 +71,10 @@ namespace Evensel.RetailService
         }
 
         #endregion
+
+        public override void Update(Customer obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

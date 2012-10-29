@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RetailService
+namespace Evensel.RetailService
 {
     public partial class User : IEntity { }
     public partial class Role : IEntity { }
@@ -12,4 +12,5 @@ namespace RetailService
     public partial class Item : IEntity { }
     public partial class Inventory : IEntity { }
     public partial class Module : IEntity { }
+    public partial class Customer : IEntity { }
 }
