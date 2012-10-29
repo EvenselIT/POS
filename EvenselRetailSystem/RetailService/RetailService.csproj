@@ -43,8 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="abstractManager.cs" />
-    <Compile Include="AbstractManager_2.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="EvenselPOS.Designer.cs">
       <AutoGen>True</AutoGen>

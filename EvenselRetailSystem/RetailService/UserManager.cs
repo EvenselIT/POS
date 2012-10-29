@@ -10,7 +10,12 @@ namespace RetailService
     {
         public override int AddNew(User obj)
         {
-            throw new NotImplementedException();
+            using (EvenselPOSEntities context = new EvenselPOSEntities())
+            {
+                context.AddToUsers(obj);
+            }
+
+            return 1;
         }
 
         public override List<User> SelectAll()
