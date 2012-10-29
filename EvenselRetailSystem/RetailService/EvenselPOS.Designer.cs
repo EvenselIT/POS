@@ -18,12 +18,12 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("EvenselPOSModel", "FK_UserRole_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(RetailService.Role), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RetailService.UserRole), true)]
-[assembly: EdmRelationshipAttribute("EvenselPOSModel", "FK_UserRole_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(RetailService.User), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RetailService.UserRole), true)]
+[assembly: EdmRelationshipAttribute("EvenselPOSModel", "FK_UserRole_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Evensel.RetailService.Role), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Evensel.RetailService.UserRole), true)]
+[assembly: EdmRelationshipAttribute("EvenselPOSModel", "FK_UserRole_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Evensel.RetailService.User), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Evensel.RetailService.UserRole), true)]
 
 #endregion
 
-namespace RetailService
+namespace Evensel.RetailService
 {
     #region Contexts
     
