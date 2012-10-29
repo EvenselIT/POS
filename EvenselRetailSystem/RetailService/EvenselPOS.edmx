@@ -7,12 +7,7 @@
     <Schema Namespace="EvenselPOSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="EvenselPOSModelStoreContainer">
           <EntitySet Name="Category" EntityType="EvenselPOSModel.Store.Category" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Config" EntityType="EvenselPOSModel.Store.Config" store:Type="Tables" store:Schema="dbo" store:Name="Config">
-            <DefiningQuery>SELECT 
-      [Config].[Key] AS [Key], 
-      [Config].[Value] AS [Value]
-      FROM [dbo].[Config] AS [Config]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Config" EntityType="EvenselPOSModel.Store.Config" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Customer" EntityType="EvenselPOSModel.Store.Customer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Gift" EntityType="EvenselPOSModel.Store.Gift" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Inventory" EntityType="EvenselPOSModel.Store.Inventory" store:Type="Tables" Schema="dbo" />
@@ -73,14 +68,11 @@
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Category" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'EvenselPOS.dbo.Config' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="Config">
           <Key>
-            <PropertyRef Name="Key" />
-            <PropertyRef Name="Value" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Key" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Value" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
@@ -387,7 +379,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="EvenselPOSModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="EvenselPOSEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Configs" EntityType="EvenselPOSModel.Config" />
           <EntitySet Name="Gifts" EntityType="EvenselPOSModel.Gift" />
           <EntitySet Name="ItemTaxes" EntityType="EvenselPOSModel.ItemTax" />
           <EntitySet Name="Modules" EntityType="EvenselPOSModel.Module" />
@@ -441,15 +432,8 @@
             <End Role="Sale" EntitySet="Sales" />
             <End Role="SalesDetail" EntitySet="SalesDetails" />
           </AssociationSet>
+          <EntitySet Name="Configs" EntityType="EvenselPOSModel.Config" />
         </EntityContainer>
-        <EntityType Name="Config">
-          <Key>
-            <PropertyRef Name="Key" />
-            <PropertyRef Name="Value" />
-          </Key>
-          <Property Name="Key" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Value" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-        </EntityType>
         <EntityType Name="Gift">
           <Key>
             <PropertyRef Name="ID" />
@@ -771,16 +755,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Config">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Key" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Value" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EvenselPOSModelStoreContainer" CdmEntityContainer="EvenselPOSEntities">
-          <EntitySetMapping Name="Configs"><EntityTypeMapping TypeName="EvenselPOSModel.Config"><MappingFragment StoreEntitySet="Config">
-            <ScalarProperty Name="Key" ColumnName="Key" />
-            <ScalarProperty Name="Value" ColumnName="Value" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Gifts"><EntityTypeMapping TypeName="EvenselPOSModel.Gift"><MappingFragment StoreEntitySet="Gift">
             <ScalarProperty Name="ID" ColumnName="ID" />
             <ScalarProperty Name="GiftNumber" ColumnName="GiftNumber" />
@@ -970,6 +958,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Configs">
+            <EntityTypeMapping TypeName="EvenselPOSModel.Config">
+              <MappingFragment StoreEntitySet="Config">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -991,7 +988,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="EvenselPOS" ZoomLevel="89">
-        <EntityTypeShape EntityType="EvenselPOSModel.Config" Width="1.5" PointX="2.75" PointY="4.75" Height="1.4033821614583335" IsExpanded="true" />
         <EntityTypeShape EntityType="EvenselPOSModel.Gift" Width="1.5" PointX="5.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
         <EntityTypeShape EntityType="EvenselPOSModel.ItemTax" Width="1.5" PointX="7.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
         <EntityTypeShape EntityType="EvenselPOSModel.Module" Width="1.5" PointX="8.75" PointY="3.75" Height="1.4033821614583317" IsExpanded="true" />
@@ -1007,9 +1003,9 @@
           <ConnectorPoint PointX="3" PointY="2.047841796875" />
         </AssociationConnector>
         <AssociationConnector Association="EvenselPOSModel.FK_UserRole_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="6.5980843098958362" />
-          <ConnectorPoint PointX="4.40625" PointY="6.5980843098958362" />
-          <ConnectorPoint PointX="4.40625" PointY="3.047587890624996" />
+          <ConnectorPoint PointX="2.25" PointY="6.6942350260416745" />
+          <ConnectorPoint PointX="3.15625" PointY="6.6942350260416745" />
+          <ConnectorPoint PointX="3.15625" PointY="3.047587890624996" />
         </AssociationConnector>
         <EntityTypeShape EntityType="EvenselPOSModel.Category" Width="1.5" PointX="11.75" PointY="10.75" Height="1.4033821614583388" />
         <EntityTypeShape EntityType="EvenselPOSModel.InvoiceDetail" Width="1.5" PointX="12.75" PointY="0.75" Height="2.1725878906250031" />
@@ -1057,6 +1053,7 @@
           <ConnectorPoint PointX="12.75" PointY="13.5" />
           <ConnectorPoint PointX="12.75" PointY="13.875" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="EvenselPOSModel.Config" Width="1.5" PointX="3.375" PointY="4.75" Height="1.5956835937500102" />
       </Diagram>
     </Diagrams>
   </Designer>

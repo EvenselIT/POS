@@ -16,4 +16,7 @@ namespace Evensel.RetailService
     public partial class Log : IEntity { }
     public partial class Invoice : IEntity { }
     public partial class Gift : IEntity { }
+    public partial class Sale : IEntity { }
+    public partial class SalesDetails : IEntity { }
+    public partial class Config : IEntity { }
 }
