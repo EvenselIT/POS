@@ -83,7 +83,6 @@ namespace Evensel.RetailService
                     
                     if (roleIds != null)
                     {
-                        List<Role> roleList = new List<Role>();
                         foreach (var id in roleIds)
                         {
                             var usrRoles = from n in context.Roles
