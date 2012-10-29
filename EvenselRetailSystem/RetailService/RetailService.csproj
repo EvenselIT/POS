@@ -52,8 +52,12 @@
     </Compile>
     <Compile Include="Extender.cs" />
     <Compile Include="Framework\AbstractManager.cs" />
+    <Compile Include="GiftManager.cs" />
     <Compile Include="ItemManager.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="Log_2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SupplierManager.cs" />
     <Compile Include="UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="Properties\DataSources\EvenselPOSEntities.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

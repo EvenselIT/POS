@@ -20,6 +20,12 @@ using System.Runtime.Serialization;
 
 [assembly: EdmRelationshipAttribute("EvenselPOSModel", "FK_UserRole_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Evensel.RetailService.Role), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Evensel.RetailService.UserRole), true)]
 [assembly: EdmRelationshipAttribute("EvenselPOSModel", "FK_UserRole_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Evensel.RetailService.User), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Evensel.RetailService.UserRole), true)]
+[assembly: EdmRelationshipAttribute("EvenselPOSModel", "FK_InvoicePayment_PaymentMethod", "PaymentMethod", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Evensel.RetailService.PaymentMethod), "InvoicePayment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Evensel.RetailService.InvoicePayment), true)]
+[assembly: EdmRelationshipAttribute("EvenselPOSModel", "FK_InvoicePayment_Invoice", "Invoice", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Evensel.RetailService.Invoice), "InvoicePayment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Evensel.RetailService.InvoicePayment), true)]
+[assembly: EdmRelationshipAttribute("EvenselPOSModel", "FK_Sales_Invoice", "Invoice", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Evensel.RetailService.Invoice), "Sale", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Evensel.RetailService.Sale), true)]
+[assembly: EdmRelationshipAttribute("EvenselPOSModel", "FK_Sales_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Evensel.RetailService.Customer), "Sale", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Evensel.RetailService.Sale), true)]
+[assembly: EdmRelationshipAttribute("EvenselPOSModel", "FK_Inventory_Item", "Item", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Evensel.RetailService.Item), "Inventory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Evensel.RetailService.Inventory), true)]
+[assembly: EdmRelationshipAttribute("EvenselPOSModel", "FK_SalesDetails_Sales", "Sale", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Evensel.RetailService.Sale), "SalesDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Evensel.RetailService.SalesDetail), true)]
 
 #endregion
 
@@ -90,22 +96,6 @@ namespace Evensel.RetailService
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Customer> Customers
-        {
-            get
-            {
-                if ((_Customers == null))
-                {
-                    _Customers = base.CreateObjectSet<Customer>("Customers");
-                }
-                return _Customers;
-            }
-        }
-        private ObjectSet<Customer> _Customers;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Gift> Gifts
         {
             get
@@ -118,54 +108,6 @@ namespace Evensel.RetailService
             }
         }
         private ObjectSet<Gift> _Gifts;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Inventory> Inventories
-        {
-            get
-            {
-                if ((_Inventories == null))
-                {
-                    _Inventories = base.CreateObjectSet<Inventory>("Inventories");
-                }
-                return _Inventories;
-            }
-        }
-        private ObjectSet<Inventory> _Inventories;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Invoice> Invoices
-        {
-            get
-            {
-                if ((_Invoices == null))
-                {
-                    _Invoices = base.CreateObjectSet<Invoice>("Invoices");
-                }
-                return _Invoices;
-            }
-        }
-        private ObjectSet<Invoice> _Invoices;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Item> Items
-        {
-            get
-            {
-                if ((_Items == null))
-                {
-                    _Items = base.CreateObjectSet<Item>("Items");
-                }
-                return _Items;
-            }
-        }
-        private ObjectSet<Item> _Items;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -310,6 +252,182 @@ namespace Evensel.RetailService
             }
         }
         private ObjectSet<UserRole> _UserRoles;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Category> Categories
+        {
+            get
+            {
+                if ((_Categories == null))
+                {
+                    _Categories = base.CreateObjectSet<Category>("Categories");
+                }
+                return _Categories;
+            }
+        }
+        private ObjectSet<Category> _Categories;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<InvoiceDetail> InvoiceDetails
+        {
+            get
+            {
+                if ((_InvoiceDetails == null))
+                {
+                    _InvoiceDetails = base.CreateObjectSet<InvoiceDetail>("InvoiceDetails");
+                }
+                return _InvoiceDetails;
+            }
+        }
+        private ObjectSet<InvoiceDetail> _InvoiceDetails;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<InvoicePayment> InvoicePayments
+        {
+            get
+            {
+                if ((_InvoicePayments == null))
+                {
+                    _InvoicePayments = base.CreateObjectSet<InvoicePayment>("InvoicePayments");
+                }
+                return _InvoicePayments;
+            }
+        }
+        private ObjectSet<InvoicePayment> _InvoicePayments;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Log> Logs
+        {
+            get
+            {
+                if ((_Logs == null))
+                {
+                    _Logs = base.CreateObjectSet<Log>("Logs");
+                }
+                return _Logs;
+            }
+        }
+        private ObjectSet<Log> _Logs;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<PaymentMethod> PaymentMethods
+        {
+            get
+            {
+                if ((_PaymentMethods == null))
+                {
+                    _PaymentMethods = base.CreateObjectSet<PaymentMethod>("PaymentMethods");
+                }
+                return _PaymentMethods;
+            }
+        }
+        private ObjectSet<PaymentMethod> _PaymentMethods;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Stock> Stocks
+        {
+            get
+            {
+                if ((_Stocks == null))
+                {
+                    _Stocks = base.CreateObjectSet<Stock>("Stocks");
+                }
+                return _Stocks;
+            }
+        }
+        private ObjectSet<Stock> _Stocks;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Invoice> Invoices
+        {
+            get
+            {
+                if ((_Invoices == null))
+                {
+                    _Invoices = base.CreateObjectSet<Invoice>("Invoices");
+                }
+                return _Invoices;
+            }
+        }
+        private ObjectSet<Invoice> _Invoices;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Customer> Customers
+        {
+            get
+            {
+                if ((_Customers == null))
+                {
+                    _Customers = base.CreateObjectSet<Customer>("Customers");
+                }
+                return _Customers;
+            }
+        }
+        private ObjectSet<Customer> _Customers;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Inventory> Inventories
+        {
+            get
+            {
+                if ((_Inventories == null))
+                {
+                    _Inventories = base.CreateObjectSet<Inventory>("Inventories");
+                }
+                return _Inventories;
+            }
+        }
+        private ObjectSet<Inventory> _Inventories;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Item> Items
+        {
+            get
+            {
+                if ((_Items == null))
+                {
+                    _Items = base.CreateObjectSet<Item>("Items");
+                }
+                return _Items;
+            }
+        }
+        private ObjectSet<Item> _Items;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SalesDetail> SalesDetails
+        {
+            get
+            {
+                if ((_SalesDetails == null))
+                {
+                    _SalesDetails = base.CreateObjectSet<SalesDetail>("SalesDetails");
+                }
+                return _SalesDetails;
+            }
+        }
+        private ObjectSet<SalesDetail> _SalesDetails;
 
         #endregion
         #region AddTo Methods
@@ -323,43 +441,11 @@ namespace Evensel.RetailService
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Customers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCustomers(Customer customer)
-        {
-            base.AddObject("Customers", customer);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Gifts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToGifts(Gift gift)
         {
             base.AddObject("Gifts", gift);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Inventories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToInventories(Inventory inventory)
-        {
-            base.AddObject("Inventories", inventory);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Invoices EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToInvoices(Invoice invoice)
-        {
-            base.AddObject("Invoices", invoice);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Items EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToItems(Item item)
-        {
-            base.AddObject("Items", item);
         }
     
         /// <summary>
@@ -433,6 +519,94 @@ namespace Evensel.RetailService
         {
             base.AddObject("UserRoles", userRole);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Categories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCategories(Category category)
+        {
+            base.AddObject("Categories", category);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the InvoiceDetails EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToInvoiceDetails(InvoiceDetail invoiceDetail)
+        {
+            base.AddObject("InvoiceDetails", invoiceDetail);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the InvoicePayments EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToInvoicePayments(InvoicePayment invoicePayment)
+        {
+            base.AddObject("InvoicePayments", invoicePayment);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Logs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToLogs(Log log)
+        {
+            base.AddObject("Logs", log);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the PaymentMethods EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPaymentMethods(PaymentMethod paymentMethod)
+        {
+            base.AddObject("PaymentMethods", paymentMethod);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Stocks EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToStocks(Stock stock)
+        {
+            base.AddObject("Stocks", stock);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Invoices EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToInvoices(Invoice invoice)
+        {
+            base.AddObject("Invoices", invoice);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Customers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCustomers(Customer customer)
+        {
+            base.AddObject("Customers", customer);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Inventories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToInventories(Inventory inventory)
+        {
+            base.AddObject("Inventories", inventory);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Items EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToItems(Item item)
+        {
+            base.AddObject("Items", item);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SalesDetails EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSalesDetails(SalesDetail salesDetail)
+        {
+            base.AddObject("SalesDetails", salesDetail);
+        }
 
         #endregion
     }
@@ -441,6 +615,87 @@ namespace Evensel.RetailService
     #endregion
     
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="EvenselPOSModel", Name="Category")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Category : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Category object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="category1">Initial value of the Category1 property.</param>
+        public static Category CreateCategory(global::System.Int32 id, global::System.String category1)
+        {
+            Category category = new Category();
+            category.ID = id;
+            category.Category1 = category1;
+            return category;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Category1
+        {
+            get
+            {
+                return _Category1;
+            }
+            set
+            {
+                OnCategory1Changing(value);
+                ReportPropertyChanging("Category1");
+                _Category1 = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Category1");
+                OnCategory1Changed();
+            }
+        }
+        private global::System.String _Category1;
+        partial void OnCategory1Changing(global::System.String value);
+        partial void OnCategory1Changed();
+
+        #endregion
+    
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -540,10 +795,16 @@ namespace Evensel.RetailService
         /// Create a new Customer object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        public static Customer CreateCustomer(global::System.Int32 id)
+        /// <param name="firstName">Initial value of the FirstName property.</param>
+        /// <param name="lastName">Initial value of the LastName property.</param>
+        /// <param name="address">Initial value of the Address property.</param>
+        public static Customer CreateCustomer(global::System.Int32 id, global::System.String firstName, global::System.String lastName, global::System.String address)
         {
             Customer customer = new Customer();
             customer.ID = id;
+            customer.FirstName = firstName;
+            customer.LastName = lastName;
+            customer.Address = address;
             return customer;
         }
 
@@ -580,31 +841,55 @@ namespace Evensel.RetailService
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String Name
+        public global::System.String FirstName
         {
             get
             {
-                return _Name;
+                return _FirstName;
             }
             set
             {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Name");
-                OnNameChanged();
+                OnFirstNameChanging(value);
+                ReportPropertyChanging("FirstName");
+                _FirstName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("FirstName");
+                OnFirstNameChanged();
             }
         }
-        private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
-        partial void OnNameChanged();
+        private global::System.String _FirstName;
+        partial void OnFirstNameChanging(global::System.String value);
+        partial void OnFirstNameChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String LastName
+        {
+            get
+            {
+                return _LastName;
+            }
+            set
+            {
+                OnLastNameChanging(value);
+                ReportPropertyChanging("LastName");
+                _LastName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("LastName");
+                OnLastNameChanged();
+            }
+        }
+        private global::System.String _LastName;
+        partial void OnLastNameChanging(global::System.String value);
+        partial void OnLastNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String Address
         {
@@ -616,7 +901,7 @@ namespace Evensel.RetailService
             {
                 OnAddressChanging(value);
                 ReportPropertyChanging("Address");
-                _Address = StructuralObject.SetValidValue(value, true);
+                _Address = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("Address");
                 OnAddressChanged();
             }
@@ -624,9 +909,178 @@ namespace Evensel.RetailService
         private global::System.String _Address;
         partial void OnAddressChanging(global::System.String value);
         partial void OnAddressChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String City
+        {
+            get
+            {
+                return _City;
+            }
+            set
+            {
+                OnCityChanging(value);
+                ReportPropertyChanging("City");
+                _City = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("City");
+                OnCityChanged();
+            }
+        }
+        private global::System.String _City;
+        partial void OnCityChanging(global::System.String value);
+        partial void OnCityChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String State
+        {
+            get
+            {
+                return _State;
+            }
+            set
+            {
+                OnStateChanging(value);
+                ReportPropertyChanging("State");
+                _State = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("State");
+                OnStateChanged();
+            }
+        }
+        private global::System.String _State;
+        partial void OnStateChanging(global::System.String value);
+        partial void OnStateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Country
+        {
+            get
+            {
+                return _Country;
+            }
+            set
+            {
+                OnCountryChanging(value);
+                ReportPropertyChanging("Country");
+                _Country = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Country");
+                OnCountryChanged();
+            }
+        }
+        private global::System.String _Country;
+        partial void OnCountryChanging(global::System.String value);
+        partial void OnCountryChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ZipCode
+        {
+            get
+            {
+                return _ZipCode;
+            }
+            set
+            {
+                OnZipCodeChanging(value);
+                ReportPropertyChanging("ZipCode");
+                _ZipCode = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ZipCode");
+                OnZipCodeChanged();
+            }
+        }
+        private global::System.String _ZipCode;
+        partial void OnZipCodeChanging(global::System.String value);
+        partial void OnZipCodeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Email
+        {
+            get
+            {
+                return _Email;
+            }
+            set
+            {
+                OnEmailChanging(value);
+                ReportPropertyChanging("Email");
+                _Email = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Email");
+                OnEmailChanged();
+            }
+        }
+        private global::System.String _Email;
+        partial void OnEmailChanging(global::System.String value);
+        partial void OnEmailChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Phone
+        {
+            get
+            {
+                return _Phone;
+            }
+            set
+            {
+                OnPhoneChanging(value);
+                ReportPropertyChanging("Phone");
+                _Phone = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Phone");
+                OnPhoneChanged();
+            }
+        }
+        private global::System.String _Phone;
+        partial void OnPhoneChanging(global::System.String value);
+        partial void OnPhoneChanged();
 
         #endregion
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EvenselPOSModel", "FK_Sales_Customer", "Sale")]
+        public EntityCollection<Sale> Sales
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Sale>("EvenselPOSModel.FK_Sales_Customer", "Sale");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Sale>("EvenselPOSModel.FK_Sales_Customer", "Sale", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -750,18 +1204,20 @@ namespace Evensel.RetailService
         /// Create a new Inventory object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        /// <param name="transID">Initial value of the TransID property.</param>
-        /// <param name="transItem">Initial value of the TransItem property.</param>
-        /// <param name="transUser">Initial value of the TransUser property.</param>
-        /// <param name="transDate">Initial value of the TransDate property.</param>
-        public static Inventory CreateInventory(global::System.Int32 id, global::System.Int32 transID, global::System.Int32 transItem, global::System.Int32 transUser, global::System.DateTime transDate)
+        /// <param name="itemID">Initial value of the ItemID property.</param>
+        /// <param name="reOrderLevel">Initial value of the ReOrderLevel property.</param>
+        /// <param name="qtyOnHand">Initial value of the QtyOnHand property.</param>
+        /// <param name="location">Initial value of the Location property.</param>
+        /// <param name="lastUpdateDate">Initial value of the LastUpdateDate property.</param>
+        public static Inventory CreateInventory(global::System.Int32 id, global::System.Int32 itemID, global::System.Int32 reOrderLevel, global::System.Int32 qtyOnHand, global::System.String location, global::System.DateTime lastUpdateDate)
         {
             Inventory inventory = new Inventory();
             inventory.ID = id;
-            inventory.TransID = transID;
-            inventory.TransItem = transItem;
-            inventory.TransUser = transUser;
-            inventory.TransDate = transDate;
+            inventory.ItemID = itemID;
+            inventory.ReOrderLevel = reOrderLevel;
+            inventory.QtyOnHand = qtyOnHand;
+            inventory.Location = location;
+            inventory.LastUpdateDate = lastUpdateDate;
             return inventory;
         }
 
@@ -800,123 +1256,164 @@ namespace Evensel.RetailService
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 TransID
+        public global::System.Int32 ItemID
         {
             get
             {
-                return _TransID;
+                return _ItemID;
             }
             set
             {
-                OnTransIDChanging(value);
-                ReportPropertyChanging("TransID");
-                _TransID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("TransID");
-                OnTransIDChanged();
+                OnItemIDChanging(value);
+                ReportPropertyChanging("ItemID");
+                _ItemID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ItemID");
+                OnItemIDChanged();
             }
         }
-        private global::System.Int32 _TransID;
-        partial void OnTransIDChanging(global::System.Int32 value);
-        partial void OnTransIDChanged();
+        private global::System.Int32 _ItemID;
+        partial void OnItemIDChanging(global::System.Int32 value);
+        partial void OnItemIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 TransItem
+        public global::System.Int32 ReOrderLevel
         {
             get
             {
-                return _TransItem;
+                return _ReOrderLevel;
             }
             set
             {
-                OnTransItemChanging(value);
-                ReportPropertyChanging("TransItem");
-                _TransItem = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("TransItem");
-                OnTransItemChanged();
+                OnReOrderLevelChanging(value);
+                ReportPropertyChanging("ReOrderLevel");
+                _ReOrderLevel = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ReOrderLevel");
+                OnReOrderLevelChanged();
             }
         }
-        private global::System.Int32 _TransItem;
-        partial void OnTransItemChanging(global::System.Int32 value);
-        partial void OnTransItemChanged();
+        private global::System.Int32 _ReOrderLevel;
+        partial void OnReOrderLevelChanging(global::System.Int32 value);
+        partial void OnReOrderLevelChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 TransUser
+        public global::System.Int32 QtyOnHand
         {
             get
             {
-                return _TransUser;
+                return _QtyOnHand;
             }
             set
             {
-                OnTransUserChanging(value);
-                ReportPropertyChanging("TransUser");
-                _TransUser = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("TransUser");
-                OnTransUserChanged();
+                OnQtyOnHandChanging(value);
+                ReportPropertyChanging("QtyOnHand");
+                _QtyOnHand = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("QtyOnHand");
+                OnQtyOnHandChanged();
             }
         }
-        private global::System.Int32 _TransUser;
-        partial void OnTransUserChanging(global::System.Int32 value);
-        partial void OnTransUserChanged();
+        private global::System.Int32 _QtyOnHand;
+        partial void OnQtyOnHandChanging(global::System.Int32 value);
+        partial void OnQtyOnHandChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.DateTime TransDate
+        public global::System.String Location
         {
             get
             {
-                return _TransDate;
+                return _Location;
             }
             set
             {
-                OnTransDateChanging(value);
-                ReportPropertyChanging("TransDate");
-                _TransDate = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("TransDate");
-                OnTransDateChanged();
+                OnLocationChanging(value);
+                ReportPropertyChanging("Location");
+                _Location = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Location");
+                OnLocationChanged();
             }
         }
-        private global::System.DateTime _TransDate;
-        partial void OnTransDateChanging(global::System.DateTime value);
-        partial void OnTransDateChanged();
+        private global::System.String _Location;
+        partial void OnLocationChanging(global::System.String value);
+        partial void OnLocationChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String TransComment
+        public global::System.DateTime LastUpdateDate
         {
             get
             {
-                return _TransComment;
+                return _LastUpdateDate;
             }
             set
             {
-                OnTransCommentChanging(value);
-                ReportPropertyChanging("TransComment");
-                _TransComment = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("TransComment");
-                OnTransCommentChanged();
+                OnLastUpdateDateChanging(value);
+                ReportPropertyChanging("LastUpdateDate");
+                _LastUpdateDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastUpdateDate");
+                OnLastUpdateDateChanged();
             }
         }
-        private global::System.String _TransComment;
-        partial void OnTransCommentChanging(global::System.String value);
-        partial void OnTransCommentChanged();
+        private global::System.DateTime _LastUpdateDate;
+        partial void OnLastUpdateDateChanging(global::System.DateTime value);
+        partial void OnLastUpdateDateChanged();
 
         #endregion
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EvenselPOSModel", "FK_Inventory_Item", "Item")]
+        public Item Item
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Item>("EvenselPOSModel.FK_Inventory_Item", "Item").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Item>("EvenselPOSModel.FK_Inventory_Item", "Item").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Item> ItemReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Item>("EvenselPOSModel.FK_Inventory_Item", "Item");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Item>("EvenselPOSModel.FK_Inventory_Item", "Item", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -934,21 +1431,15 @@ namespace Evensel.RetailService
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="customeID">Initial value of the CustomeID property.</param>
-        /// <param name="itemID">Initial value of the ItemID property.</param>
-        /// <param name="unitPrice">Initial value of the UnitPrice property.</param>
-        /// <param name="qty">Initial value of the Qty property.</param>
-        /// <param name="subTotal">Initial value of the SubTotal property.</param>
+        /// <param name="totalAmount">Initial value of the TotalAmount property.</param>
         /// <param name="dateTime">Initial value of the DateTime property.</param>
         /// <param name="userID">Initial value of the UserID property.</param>
-        public static Invoice CreateInvoice(global::System.Int32 id, global::System.Int32 customeID, global::System.Int32 itemID, global::System.Decimal unitPrice, global::System.Double qty, global::System.Decimal subTotal, global::System.DateTime dateTime, global::System.Int32 userID)
+        public static Invoice CreateInvoice(global::System.Int32 id, global::System.Int32 customeID, global::System.Decimal totalAmount, global::System.DateTime dateTime, global::System.Int32 userID)
         {
             Invoice invoice = new Invoice();
             invoice.ID = id;
             invoice.CustomeID = customeID;
-            invoice.ItemID = itemID;
-            invoice.UnitPrice = unitPrice;
-            invoice.Qty = qty;
-            invoice.SubTotal = subTotal;
+            invoice.TotalAmount = totalAmount;
             invoice.DateTime = dateTime;
             invoice.UserID = userID;
             return invoice;
@@ -1013,96 +1504,72 @@ namespace Evensel.RetailService
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 ItemID
+        public global::System.Decimal TotalAmount
         {
             get
             {
-                return _ItemID;
+                return _TotalAmount;
             }
             set
             {
-                OnItemIDChanging(value);
-                ReportPropertyChanging("ItemID");
-                _ItemID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ItemID");
-                OnItemIDChanged();
+                OnTotalAmountChanging(value);
+                ReportPropertyChanging("TotalAmount");
+                _TotalAmount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TotalAmount");
+                OnTotalAmountChanged();
             }
         }
-        private global::System.Int32 _ItemID;
-        partial void OnItemIDChanging(global::System.Int32 value);
-        partial void OnItemIDChanged();
+        private global::System.Decimal _TotalAmount;
+        partial void OnTotalAmountChanging(global::System.Decimal value);
+        partial void OnTotalAmountChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Decimal UnitPrice
+        public global::System.String Currency
         {
             get
             {
-                return _UnitPrice;
+                return _Currency;
             }
             set
             {
-                OnUnitPriceChanging(value);
-                ReportPropertyChanging("UnitPrice");
-                _UnitPrice = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("UnitPrice");
-                OnUnitPriceChanged();
+                OnCurrencyChanging(value);
+                ReportPropertyChanging("Currency");
+                _Currency = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Currency");
+                OnCurrencyChanged();
             }
         }
-        private global::System.Decimal _UnitPrice;
-        partial void OnUnitPriceChanging(global::System.Decimal value);
-        partial void OnUnitPriceChanged();
+        private global::System.String _Currency;
+        partial void OnCurrencyChanging(global::System.String value);
+        partial void OnCurrencyChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Double Qty
+        public Nullable<global::System.Decimal> Rate
         {
             get
             {
-                return _Qty;
+                return _Rate;
             }
             set
             {
-                OnQtyChanging(value);
-                ReportPropertyChanging("Qty");
-                _Qty = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Qty");
-                OnQtyChanged();
+                OnRateChanging(value);
+                ReportPropertyChanging("Rate");
+                _Rate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Rate");
+                OnRateChanged();
             }
         }
-        private global::System.Double _Qty;
-        partial void OnQtyChanging(global::System.Double value);
-        partial void OnQtyChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Decimal SubTotal
-        {
-            get
-            {
-                return _SubTotal;
-            }
-            set
-            {
-                OnSubTotalChanging(value);
-                ReportPropertyChanging("SubTotal");
-                _SubTotal = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SubTotal");
-                OnSubTotalChanged();
-            }
-        }
-        private global::System.Decimal _SubTotal;
-        partial void OnSubTotalChanging(global::System.Decimal value);
-        partial void OnSubTotalChanged();
+        private Nullable<global::System.Decimal> _Rate;
+        partial void OnRateChanging(Nullable<global::System.Decimal> value);
+        partial void OnRateChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1175,9 +1642,454 @@ namespace Evensel.RetailService
         private Nullable<global::System.Byte> _IsActive;
         partial void OnIsActiveChanging(Nullable<global::System.Byte> value);
         partial void OnIsActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> TotalDiscount
+        {
+            get
+            {
+                return _TotalDiscount;
+            }
+            set
+            {
+                OnTotalDiscountChanging(value);
+                ReportPropertyChanging("TotalDiscount");
+                _TotalDiscount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TotalDiscount");
+                OnTotalDiscountChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _TotalDiscount;
+        partial void OnTotalDiscountChanging(Nullable<global::System.Decimal> value);
+        partial void OnTotalDiscountChanged();
 
         #endregion
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EvenselPOSModel", "FK_InvoicePayment_Invoice", "InvoicePayment")]
+        public EntityCollection<InvoicePayment> InvoicePayments
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<InvoicePayment>("EvenselPOSModel.FK_InvoicePayment_Invoice", "InvoicePayment");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<InvoicePayment>("EvenselPOSModel.FK_InvoicePayment_Invoice", "InvoicePayment", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EvenselPOSModel", "FK_Sales_Invoice", "Sale")]
+        public EntityCollection<Sale> Sales
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Sale>("EvenselPOSModel.FK_Sales_Invoice", "Sale");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Sale>("EvenselPOSModel.FK_Sales_Invoice", "Sale", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="EvenselPOSModel", Name="InvoiceDetail")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class InvoiceDetail : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new InvoiceDetail object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="invoiceID">Initial value of the InvoiceID property.</param>
+        /// <param name="itemID">Initial value of the ItemID property.</param>
+        /// <param name="qty">Initial value of the Qty property.</param>
+        /// <param name="unitPrice">Initial value of the UnitPrice property.</param>
+        /// <param name="subTotal">Initial value of the SubTotal property.</param>
+        public static InvoiceDetail CreateInvoiceDetail(global::System.Int32 id, global::System.Int32 invoiceID, global::System.Int32 itemID, global::System.Double qty, global::System.Decimal unitPrice, global::System.Decimal subTotal)
+        {
+            InvoiceDetail invoiceDetail = new InvoiceDetail();
+            invoiceDetail.ID = id;
+            invoiceDetail.InvoiceID = invoiceID;
+            invoiceDetail.ItemID = itemID;
+            invoiceDetail.Qty = qty;
+            invoiceDetail.UnitPrice = unitPrice;
+            invoiceDetail.SubTotal = subTotal;
+            return invoiceDetail;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 InvoiceID
+        {
+            get
+            {
+                return _InvoiceID;
+            }
+            set
+            {
+                OnInvoiceIDChanging(value);
+                ReportPropertyChanging("InvoiceID");
+                _InvoiceID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("InvoiceID");
+                OnInvoiceIDChanged();
+            }
+        }
+        private global::System.Int32 _InvoiceID;
+        partial void OnInvoiceIDChanging(global::System.Int32 value);
+        partial void OnInvoiceIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ItemID
+        {
+            get
+            {
+                return _ItemID;
+            }
+            set
+            {
+                OnItemIDChanging(value);
+                ReportPropertyChanging("ItemID");
+                _ItemID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ItemID");
+                OnItemIDChanged();
+            }
+        }
+        private global::System.Int32 _ItemID;
+        partial void OnItemIDChanging(global::System.Int32 value);
+        partial void OnItemIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double Qty
+        {
+            get
+            {
+                return _Qty;
+            }
+            set
+            {
+                OnQtyChanging(value);
+                ReportPropertyChanging("Qty");
+                _Qty = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Qty");
+                OnQtyChanged();
+            }
+        }
+        private global::System.Double _Qty;
+        partial void OnQtyChanging(global::System.Double value);
+        partial void OnQtyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal UnitPrice
+        {
+            get
+            {
+                return _UnitPrice;
+            }
+            set
+            {
+                OnUnitPriceChanging(value);
+                ReportPropertyChanging("UnitPrice");
+                _UnitPrice = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UnitPrice");
+                OnUnitPriceChanged();
+            }
+        }
+        private global::System.Decimal _UnitPrice;
+        partial void OnUnitPriceChanging(global::System.Decimal value);
+        partial void OnUnitPriceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal SubTotal
+        {
+            get
+            {
+                return _SubTotal;
+            }
+            set
+            {
+                OnSubTotalChanging(value);
+                ReportPropertyChanging("SubTotal");
+                _SubTotal = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SubTotal");
+                OnSubTotalChanged();
+            }
+        }
+        private global::System.Decimal _SubTotal;
+        partial void OnSubTotalChanging(global::System.Decimal value);
+        partial void OnSubTotalChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="EvenselPOSModel", Name="InvoicePayment")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class InvoicePayment : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new InvoicePayment object.
+        /// </summary>
+        /// <param name="paymentMethodID">Initial value of the PaymentMethodID property.</param>
+        /// <param name="invoiceID">Initial value of the InvoiceID property.</param>
+        /// <param name="amount">Initial value of the Amount property.</param>
+        public static InvoicePayment CreateInvoicePayment(global::System.Int32 paymentMethodID, global::System.Int32 invoiceID, global::System.Decimal amount)
+        {
+            InvoicePayment invoicePayment = new InvoicePayment();
+            invoicePayment.PaymentMethodID = paymentMethodID;
+            invoicePayment.InvoiceID = invoiceID;
+            invoicePayment.Amount = amount;
+            return invoicePayment;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PaymentMethodID
+        {
+            get
+            {
+                return _PaymentMethodID;
+            }
+            set
+            {
+                if (_PaymentMethodID != value)
+                {
+                    OnPaymentMethodIDChanging(value);
+                    ReportPropertyChanging("PaymentMethodID");
+                    _PaymentMethodID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PaymentMethodID");
+                    OnPaymentMethodIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _PaymentMethodID;
+        partial void OnPaymentMethodIDChanging(global::System.Int32 value);
+        partial void OnPaymentMethodIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 InvoiceID
+        {
+            get
+            {
+                return _InvoiceID;
+            }
+            set
+            {
+                if (_InvoiceID != value)
+                {
+                    OnInvoiceIDChanging(value);
+                    ReportPropertyChanging("InvoiceID");
+                    _InvoiceID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("InvoiceID");
+                    OnInvoiceIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _InvoiceID;
+        partial void OnInvoiceIDChanging(global::System.Int32 value);
+        partial void OnInvoiceIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal Amount
+        {
+            get
+            {
+                return _Amount;
+            }
+            set
+            {
+                OnAmountChanging(value);
+                ReportPropertyChanging("Amount");
+                _Amount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Amount");
+                OnAmountChanged();
+            }
+        }
+        private global::System.Decimal _Amount;
+        partial void OnAmountChanging(global::System.Decimal value);
+        partial void OnAmountChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EvenselPOSModel", "FK_InvoicePayment_PaymentMethod", "PaymentMethod")]
+        public PaymentMethod PaymentMethod
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PaymentMethod>("EvenselPOSModel.FK_InvoicePayment_PaymentMethod", "PaymentMethod").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PaymentMethod>("EvenselPOSModel.FK_InvoicePayment_PaymentMethod", "PaymentMethod").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<PaymentMethod> PaymentMethodReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PaymentMethod>("EvenselPOSModel.FK_InvoicePayment_PaymentMethod", "PaymentMethod");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<PaymentMethod>("EvenselPOSModel.FK_InvoicePayment_PaymentMethod", "PaymentMethod", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EvenselPOSModel", "FK_InvoicePayment_Invoice", "Invoice")]
+        public Invoice Invoice
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Invoice>("EvenselPOSModel.FK_InvoicePayment_Invoice", "Invoice").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Invoice>("EvenselPOSModel.FK_InvoicePayment_Invoice", "Invoice").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Invoice> InvoiceReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Invoice>("EvenselPOSModel.FK_InvoicePayment_Invoice", "Invoice");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Invoice>("EvenselPOSModel.FK_InvoicePayment_Invoice", "Invoice", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -1196,14 +2108,12 @@ namespace Evensel.RetailService
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="itemCode">Initial value of the ItemCode property.</param>
         /// <param name="unitPrice">Initial value of the UnitPrice property.</param>
-        /// <param name="quantity">Initial value of the Quantity property.</param>
-        public static Item CreateItem(global::System.Int32 id, global::System.String itemCode, global::System.Decimal unitPrice, global::System.Double quantity)
+        public static Item CreateItem(global::System.Int32 id, global::System.String itemCode, global::System.Decimal unitPrice)
         {
             Item item = new Item();
             item.ID = id;
             item.ItemCode = itemCode;
             item.UnitPrice = unitPrice;
-            item.Quantity = quantity;
             return item;
         }
 
@@ -1384,78 +2294,6 @@ namespace Evensel.RetailService
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double Quantity
-        {
-            get
-            {
-                return _Quantity;
-            }
-            set
-            {
-                OnQuantityChanging(value);
-                ReportPropertyChanging("Quantity");
-                _Quantity = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Quantity");
-                OnQuantityChanged();
-            }
-        }
-        private global::System.Double _Quantity;
-        partial void OnQuantityChanging(global::System.Double value);
-        partial void OnQuantityChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Double> ReOrderLevel
-        {
-            get
-            {
-                return _ReOrderLevel;
-            }
-            set
-            {
-                OnReOrderLevelChanging(value);
-                ReportPropertyChanging("ReOrderLevel");
-                _ReOrderLevel = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ReOrderLevel");
-                OnReOrderLevelChanged();
-            }
-        }
-        private Nullable<global::System.Double> _ReOrderLevel;
-        partial void OnReOrderLevelChanging(Nullable<global::System.Double> value);
-        partial void OnReOrderLevelChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Location
-        {
-            get
-            {
-                return _Location;
-            }
-            set
-            {
-                OnLocationChanging(value);
-                ReportPropertyChanging("Location");
-                _Location = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Location");
-                OnLocationChanged();
-            }
-        }
-        private global::System.String _Location;
-        partial void OnLocationChanging(global::System.String value);
-        partial void OnLocationChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String IsActive
@@ -1476,9 +2314,58 @@ namespace Evensel.RetailService
         private global::System.String _IsActive;
         partial void OnIsActiveChanging(global::System.String value);
         partial void OnIsActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CategoryID
+        {
+            get
+            {
+                return _CategoryID;
+            }
+            set
+            {
+                OnCategoryIDChanging(value);
+                ReportPropertyChanging("CategoryID");
+                _CategoryID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CategoryID");
+                OnCategoryIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CategoryID;
+        partial void OnCategoryIDChanging(Nullable<global::System.Int32> value);
+        partial void OnCategoryIDChanged();
 
         #endregion
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EvenselPOSModel", "FK_Inventory_Item", "Inventory")]
+        public EntityCollection<Inventory> Inventories
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Inventory>("EvenselPOSModel.FK_Inventory_Item", "Inventory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Inventory>("EvenselPOSModel.FK_Inventory_Item", "Inventory", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -1587,6 +2474,163 @@ namespace Evensel.RetailService
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="EvenselPOSModel", Name="Log")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Log : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Log object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="actionDate">Initial value of the ActionDate property.</param>
+        /// <param name="module">Initial value of the Module property.</param>
+        /// <param name="description">Initial value of the Description property.</param>
+        public static Log CreateLog(global::System.Int32 id, global::System.DateTime actionDate, global::System.String module, global::System.DateTime description)
+        {
+            Log log = new Log();
+            log.ID = id;
+            log.ActionDate = actionDate;
+            log.Module = module;
+            log.Description = description;
+            return log;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime ActionDate
+        {
+            get
+            {
+                return _ActionDate;
+            }
+            set
+            {
+                OnActionDateChanging(value);
+                ReportPropertyChanging("ActionDate");
+                _ActionDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ActionDate");
+                OnActionDateChanged();
+            }
+        }
+        private global::System.DateTime _ActionDate;
+        partial void OnActionDateChanging(global::System.DateTime value);
+        partial void OnActionDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Module
+        {
+            get
+            {
+                return _Module;
+            }
+            set
+            {
+                OnModuleChanging(value);
+                ReportPropertyChanging("Module");
+                _Module = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Module");
+                OnModuleChanged();
+            }
+        }
+        private global::System.String _Module;
+        partial void OnModuleChanging(global::System.String value);
+        partial void OnModuleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.DateTime _Description;
+        partial void OnDescriptionChanging(global::System.DateTime value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> UserID
+        {
+            get
+            {
+                return _UserID;
+            }
+            set
+            {
+                OnUserIDChanging(value);
+                ReportPropertyChanging("UserID");
+                _UserID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserID");
+                OnUserIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _UserID;
+        partial void OnUserIDChanging(Nullable<global::System.Int32> value);
+        partial void OnUserIDChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="EvenselPOSModel", Name="Module")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -1661,6 +2705,112 @@ namespace Evensel.RetailService
 
         #endregion
     
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="EvenselPOSModel", Name="PaymentMethod")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class PaymentMethod : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new PaymentMethod object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="methodName">Initial value of the MethodName property.</param>
+        public static PaymentMethod CreatePaymentMethod(global::System.Int32 id, global::System.String methodName)
+        {
+            PaymentMethod paymentMethod = new PaymentMethod();
+            paymentMethod.ID = id;
+            paymentMethod.MethodName = methodName;
+            return paymentMethod;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String MethodName
+        {
+            get
+            {
+                return _MethodName;
+            }
+            set
+            {
+                OnMethodNameChanging(value);
+                ReportPropertyChanging("MethodName");
+                _MethodName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("MethodName");
+                OnMethodNameChanged();
+            }
+        }
+        private global::System.String _MethodName;
+        partial void OnMethodNameChanging(global::System.String value);
+        partial void OnMethodNameChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EvenselPOSModel", "FK_InvoicePayment_PaymentMethod", "InvoicePayment")]
+        public EntityCollection<InvoicePayment> InvoicePayments
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<InvoicePayment>("EvenselPOSModel.FK_InvoicePayment_PaymentMethod", "InvoicePayment");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<InvoicePayment>("EvenselPOSModel.FK_InvoicePayment_PaymentMethod", "InvoicePayment", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -2120,6 +3270,488 @@ namespace Evensel.RetailService
         private global::System.Int32 _UserID;
         partial void OnUserIDChanging(global::System.Int32 value);
         partial void OnUserIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> TotalDiscount
+        {
+            get
+            {
+                return _TotalDiscount;
+            }
+            set
+            {
+                OnTotalDiscountChanging(value);
+                ReportPropertyChanging("TotalDiscount");
+                _TotalDiscount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TotalDiscount");
+                OnTotalDiscountChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _TotalDiscount;
+        partial void OnTotalDiscountChanging(Nullable<global::System.Decimal> value);
+        partial void OnTotalDiscountChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EvenselPOSModel", "FK_Sales_Invoice", "Invoice")]
+        public Invoice Invoice
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Invoice>("EvenselPOSModel.FK_Sales_Invoice", "Invoice").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Invoice>("EvenselPOSModel.FK_Sales_Invoice", "Invoice").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Invoice> InvoiceReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Invoice>("EvenselPOSModel.FK_Sales_Invoice", "Invoice");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Invoice>("EvenselPOSModel.FK_Sales_Invoice", "Invoice", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EvenselPOSModel", "FK_Sales_Customer", "Customer")]
+        public Customer Customer
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("EvenselPOSModel.FK_Sales_Customer", "Customer").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("EvenselPOSModel.FK_Sales_Customer", "Customer").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Customer> CustomerReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("EvenselPOSModel.FK_Sales_Customer", "Customer");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Customer>("EvenselPOSModel.FK_Sales_Customer", "Customer", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EvenselPOSModel", "FK_SalesDetails_Sales", "SalesDetail")]
+        public EntityCollection<SalesDetail> SalesDetails
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SalesDetail>("EvenselPOSModel.FK_SalesDetails_Sales", "SalesDetail");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SalesDetail>("EvenselPOSModel.FK_SalesDetails_Sales", "SalesDetail", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="EvenselPOSModel", Name="SalesDetail")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SalesDetail : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SalesDetail object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="salesID">Initial value of the SalesID property.</param>
+        /// <param name="itemID">Initial value of the ItemID property.</param>
+        /// <param name="qty">Initial value of the Qty property.</param>
+        /// <param name="unitPrice">Initial value of the UnitPrice property.</param>
+        /// <param name="subTotal">Initial value of the SubTotal property.</param>
+        public static SalesDetail CreateSalesDetail(global::System.Int32 id, global::System.Int32 salesID, global::System.Int32 itemID, global::System.Double qty, global::System.Decimal unitPrice, global::System.Decimal subTotal)
+        {
+            SalesDetail salesDetail = new SalesDetail();
+            salesDetail.ID = id;
+            salesDetail.SalesID = salesID;
+            salesDetail.ItemID = itemID;
+            salesDetail.Qty = qty;
+            salesDetail.UnitPrice = unitPrice;
+            salesDetail.SubTotal = subTotal;
+            return salesDetail;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SalesID
+        {
+            get
+            {
+                return _SalesID;
+            }
+            set
+            {
+                OnSalesIDChanging(value);
+                ReportPropertyChanging("SalesID");
+                _SalesID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SalesID");
+                OnSalesIDChanged();
+            }
+        }
+        private global::System.Int32 _SalesID;
+        partial void OnSalesIDChanging(global::System.Int32 value);
+        partial void OnSalesIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ItemID
+        {
+            get
+            {
+                return _ItemID;
+            }
+            set
+            {
+                OnItemIDChanging(value);
+                ReportPropertyChanging("ItemID");
+                _ItemID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ItemID");
+                OnItemIDChanged();
+            }
+        }
+        private global::System.Int32 _ItemID;
+        partial void OnItemIDChanging(global::System.Int32 value);
+        partial void OnItemIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double Qty
+        {
+            get
+            {
+                return _Qty;
+            }
+            set
+            {
+                OnQtyChanging(value);
+                ReportPropertyChanging("Qty");
+                _Qty = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Qty");
+                OnQtyChanged();
+            }
+        }
+        private global::System.Double _Qty;
+        partial void OnQtyChanging(global::System.Double value);
+        partial void OnQtyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal UnitPrice
+        {
+            get
+            {
+                return _UnitPrice;
+            }
+            set
+            {
+                OnUnitPriceChanging(value);
+                ReportPropertyChanging("UnitPrice");
+                _UnitPrice = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UnitPrice");
+                OnUnitPriceChanged();
+            }
+        }
+        private global::System.Decimal _UnitPrice;
+        partial void OnUnitPriceChanging(global::System.Decimal value);
+        partial void OnUnitPriceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal SubTotal
+        {
+            get
+            {
+                return _SubTotal;
+            }
+            set
+            {
+                OnSubTotalChanging(value);
+                ReportPropertyChanging("SubTotal");
+                _SubTotal = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SubTotal");
+                OnSubTotalChanged();
+            }
+        }
+        private global::System.Decimal _SubTotal;
+        partial void OnSubTotalChanging(global::System.Decimal value);
+        partial void OnSubTotalChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Discount
+        {
+            get
+            {
+                return _Discount;
+            }
+            set
+            {
+                OnDiscountChanging(value);
+                ReportPropertyChanging("Discount");
+                _Discount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Discount");
+                OnDiscountChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Discount;
+        partial void OnDiscountChanging(Nullable<global::System.Double> value);
+        partial void OnDiscountChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EvenselPOSModel", "FK_SalesDetails_Sales", "Sale")]
+        public Sale Sale
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Sale>("EvenselPOSModel.FK_SalesDetails_Sales", "Sale").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Sale>("EvenselPOSModel.FK_SalesDetails_Sales", "Sale").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Sale> SaleReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Sale>("EvenselPOSModel.FK_SalesDetails_Sales", "Sale");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Sale>("EvenselPOSModel.FK_SalesDetails_Sales", "Sale", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="EvenselPOSModel", Name="Stock")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Stock : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Stock object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="stock1">Initial value of the Stock1 property.</param>
+        /// <param name="supplierID">Initial value of the SupplierID property.</param>
+        public static Stock CreateStock(global::System.Int32 id, global::System.String stock1, global::System.Int32 supplierID)
+        {
+            Stock stock = new Stock();
+            stock.ID = id;
+            stock.Stock1 = stock1;
+            stock.SupplierID = supplierID;
+            return stock;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Stock1
+        {
+            get
+            {
+                return _Stock1;
+            }
+            set
+            {
+                OnStock1Changing(value);
+                ReportPropertyChanging("Stock1");
+                _Stock1 = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Stock1");
+                OnStock1Changed();
+            }
+        }
+        private global::System.String _Stock1;
+        partial void OnStock1Changing(global::System.String value);
+        partial void OnStock1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SupplierID
+        {
+            get
+            {
+                return _SupplierID;
+            }
+            set
+            {
+                OnSupplierIDChanging(value);
+                ReportPropertyChanging("SupplierID");
+                _SupplierID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SupplierID");
+                OnSupplierIDChanged();
+            }
+        }
+        private global::System.Int32 _SupplierID;
+        partial void OnSupplierIDChanging(global::System.Int32 value);
+        partial void OnSupplierIDChanged();
 
         #endregion
     

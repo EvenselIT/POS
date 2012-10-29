@@ -4,8 +4,9 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EvenselPOSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="EvenselPOSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="EvenselPOSModelStoreContainer">
+          <EntitySet Name="Category" EntityType="EvenselPOSModel.Store.Category" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Config" EntityType="EvenselPOSModel.Store.Config" store:Type="Tables" store:Schema="dbo" store:Name="Config">
             <DefiningQuery>SELECT 
       [Config].[Key] AS [Key], 
@@ -16,16 +17,46 @@
           <EntitySet Name="Gift" EntityType="EvenselPOSModel.Store.Gift" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Inventory" EntityType="EvenselPOSModel.Store.Inventory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Invoice" EntityType="EvenselPOSModel.Store.Invoice" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="InvoiceDetails" EntityType="EvenselPOSModel.Store.InvoiceDetails" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="InvoicePayment" EntityType="EvenselPOSModel.Store.InvoicePayment" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Item" EntityType="EvenselPOSModel.Store.Item" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ItemTax" EntityType="EvenselPOSModel.Store.ItemTax" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Log" EntityType="EvenselPOSModel.Store.Log" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Module" EntityType="EvenselPOSModel.Store.Module" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PaymentMethod" EntityType="EvenselPOSModel.Store.PaymentMethod" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Receives" EntityType="EvenselPOSModel.Store.Receives" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Role" EntityType="EvenselPOSModel.Store.Role" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Sales" EntityType="EvenselPOSModel.Store.Sales" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SalesDetails" EntityType="EvenselPOSModel.Store.SalesDetails" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Stock" EntityType="EvenselPOSModel.Store.Stock" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Supplier" EntityType="EvenselPOSModel.Store.Supplier" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="sysdiagrams" EntityType="EvenselPOSModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="EvenselPOSModel.Store.User" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserRole" EntityType="EvenselPOSModel.Store.UserRole" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Inventory_Item" Association="EvenselPOSModel.Store.FK_Inventory_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoicePayment_Invoice" Association="EvenselPOSModel.Store.FK_InvoicePayment_Invoice">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="InvoicePayment" EntitySet="InvoicePayment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoicePayment_PaymentMethod" Association="EvenselPOSModel.Store.FK_InvoicePayment_PaymentMethod">
+            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+            <End Role="InvoicePayment" EntitySet="InvoicePayment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sales_Customer" Association="EvenselPOSModel.Store.FK_Sales_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sales_Invoice" Association="EvenselPOSModel.Store.FK_Sales_Invoice">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesDetails_Sales" Association="EvenselPOSModel.Store.FK_SalesDetails_Sales">
+            <End Role="Sales" EntitySet="Sales" />
+            <End Role="SalesDetails" EntitySet="SalesDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_UserRole_Role" Association="EvenselPOSModel.Store.FK_UserRole_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="UserRole" EntitySet="UserRole" />
@@ -35,6 +66,13 @@
             <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'EvenselPOS.dbo.Config' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
@@ -51,8 +89,15 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Gift">
           <Key>
@@ -67,11 +112,11 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="TransID" Type="int" Nullable="false" />
-          <Property Name="TransItem" Type="int" Nullable="false" />
-          <Property Name="TransUser" Type="int" Nullable="false" />
-          <Property Name="TransDate" Type="datetime" Nullable="false" />
-          <Property Name="TransComment" Type="text" />
+          <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="ReOrderLevel" Type="int" Nullable="false" />
+          <Property Name="QtyOnHand" Type="int" Nullable="false" />
+          <Property Name="Location" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastUpdateDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Invoice">
           <Key>
@@ -79,13 +124,33 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="CustomeID" Type="int" Nullable="false" />
-          <Property Name="ItemID" Type="int" Nullable="false" />
-          <Property Name="UnitPrice" Type="decimal" Nullable="false" />
-          <Property Name="Qty" Type="float" Nullable="false" />
-          <Property Name="SubTotal" Type="decimal" Nullable="false" />
+          <Property Name="TotalAmount" Type="decimal" Nullable="false" />
+          <Property Name="Currency" Type="nchar" MaxLength="3" />
+          <Property Name="Rate" Type="decimal" />
           <Property Name="DateTime" Type="datetime" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="tinyint" />
+          <Property Name="TotalDiscount" Type="decimal" />
+        </EntityType>
+        <EntityType Name="InvoiceDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="InvoiceID" Type="int" Nullable="false" />
+          <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="Qty" Type="float" Nullable="false" />
+          <Property Name="UnitPrice" Type="decimal" Nullable="false" />
+          <Property Name="SubTotal" Type="decimal" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InvoicePayment">
+          <Key>
+            <PropertyRef Name="PaymentMethodID" />
+            <PropertyRef Name="InvoiceID" />
+          </Key>
+          <Property Name="PaymentMethodID" Type="int" Nullable="false" />
+          <Property Name="InvoiceID" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Nullable="false" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -98,10 +163,8 @@
           <Property Name="Description" Type="varchar" MaxLength="50" />
           <Property Name="CostPrice" Type="decimal" />
           <Property Name="UnitPrice" Type="decimal" Nullable="false" />
-          <Property Name="Quantity" Type="float" Nullable="false" />
-          <Property Name="ReOrderLevel" Type="float" />
-          <Property Name="Location" Type="varchar" MaxLength="50" />
           <Property Name="IsActive" Type="nchar" MaxLength="10" />
+          <Property Name="CategoryID" Type="int" />
         </EntityType>
         <EntityType Name="ItemTax">
           <Key>
@@ -111,12 +174,29 @@
           <Property Name="Item" Type="int" />
           <Property Name="ItemTaxes" Type="decimal" />
         </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ActionDate" Type="datetime" Nullable="false" />
+          <Property Name="Module" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="datetime" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
         <EntityType Name="Module">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Module" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="MethodName" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="Receives">
           <Key>
@@ -146,6 +226,27 @@
           <Property Name="SalesDate" Type="datetime" Nullable="false" />
           <Property Name="InvoiceID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="TotalDiscount" Type="decimal" />
+        </EntityType>
+        <EntityType Name="SalesDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="SalesID" Type="int" Nullable="false" />
+          <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="Qty" Type="float" Nullable="false" />
+          <Property Name="UnitPrice" Type="decimal" Nullable="false" />
+          <Property Name="SubTotal" Type="decimal" Nullable="false" />
+          <Property Name="Discount" Type="float" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Stock" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SupplierID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Supplier">
           <Key>
@@ -185,6 +286,78 @@
           <Property Name="UserID" Type="int" />
           <Property Name="Module" Type="int" />
         </EntityType>
+        <Association Name="FK_Inventory_Item">
+          <End Role="Item" Type="EvenselPOSModel.Store.Item" Multiplicity="1" />
+          <End Role="Inventory" Type="EvenselPOSModel.Store.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoicePayment_Invoice">
+          <End Role="Invoice" Type="EvenselPOSModel.Store.Invoice" Multiplicity="1" />
+          <End Role="InvoicePayment" Type="EvenselPOSModel.Store.InvoicePayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InvoicePayment">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoicePayment_PaymentMethod">
+          <End Role="PaymentMethod" Type="EvenselPOSModel.Store.PaymentMethod" Multiplicity="1" />
+          <End Role="InvoicePayment" Type="EvenselPOSModel.Store.InvoicePayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethod">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InvoicePayment">
+              <PropertyRef Name="PaymentMethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sales_Customer">
+          <End Role="Customer" Type="EvenselPOSModel.Store.Customer" Multiplicity="1" />
+          <End Role="Sales" Type="EvenselPOSModel.Store.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sales_Invoice">
+          <End Role="Invoice" Type="EvenselPOSModel.Store.Invoice" Multiplicity="1" />
+          <End Role="Sales" Type="EvenselPOSModel.Store.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesDetails_Sales">
+          <End Role="Sales" Type="EvenselPOSModel.Store.Sales" Multiplicity="1" />
+          <End Role="SalesDetails" Type="EvenselPOSModel.Store.SalesDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sales">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SalesDetails">
+              <PropertyRef Name="SalesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserRole_Role">
           <End Role="Role" Type="EvenselPOSModel.Store.Role" Multiplicity="0..1" />
           <End Role="UserRole" Type="EvenselPOSModel.Store.UserRole" Multiplicity="*" />
@@ -209,29 +382,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-      warning 6013: The table/view 'EvenselPOS.dbo.SalesDetails' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-      
-      <EntityType Name="SalesDetails">
-        <Property Name="ID" Type="int" />
-        <Property Name="SalesID" Type="int" />
-        <Property Name="ItemID" Type="int" />
-        <Property Name="Qty" Type="float" />
-        <Property Name="UnitPrice" Type="decimal" />
-        <Property Name="SubTotal" Type="decimal" />
-      </EntityType>-->
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EvenselPOSModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="EvenselPOSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Configs" EntityType="EvenselPOSModel.Config" />
-          <EntitySet Name="Customers" EntityType="EvenselPOSModel.Customer" />
           <EntitySet Name="Gifts" EntityType="EvenselPOSModel.Gift" />
-          <EntitySet Name="Inventories" EntityType="EvenselPOSModel.Inventory" />
-          <EntitySet Name="Invoices" EntityType="EvenselPOSModel.Invoice" />
-          <EntitySet Name="Items" EntityType="EvenselPOSModel.Item" />
           <EntitySet Name="ItemTaxes" EntityType="EvenselPOSModel.ItemTax" />
           <EntitySet Name="Modules" EntityType="EvenselPOSModel.Module" />
           <EntitySet Name="Receives" EntityType="EvenselPOSModel.Receive" />
@@ -249,6 +406,41 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserRole" EntitySet="UserRoles" />
           </AssociationSet>
+          <EntitySet Name="Categories" EntityType="EvenselPOSModel.Category" />
+          <EntitySet Name="InvoiceDetails" EntityType="EvenselPOSModel.InvoiceDetail" />
+          <EntitySet Name="InvoicePayments" EntityType="EvenselPOSModel.InvoicePayment" />
+          <EntitySet Name="Logs" EntityType="EvenselPOSModel.Log" />
+          <EntitySet Name="PaymentMethods" EntityType="EvenselPOSModel.PaymentMethod" />
+          <EntitySet Name="Stocks" EntityType="EvenselPOSModel.Stock" />
+          <AssociationSet Name="FK_InvoicePayment_PaymentMethod" Association="EvenselPOSModel.FK_InvoicePayment_PaymentMethod">
+            <End Role="PaymentMethod" EntitySet="PaymentMethods" />
+            <End Role="InvoicePayment" EntitySet="InvoicePayments" />
+          </AssociationSet>
+          <EntitySet Name="Invoices" EntityType="EvenselPOSModel.Invoice" />
+          <AssociationSet Name="FK_InvoicePayment_Invoice" Association="EvenselPOSModel.FK_InvoicePayment_Invoice">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="InvoicePayment" EntitySet="InvoicePayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sales_Invoice" Association="EvenselPOSModel.FK_Sales_Invoice">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <EntitySet Name="Customers" EntityType="EvenselPOSModel.Customer" />
+          <AssociationSet Name="FK_Sales_Customer" Association="EvenselPOSModel.FK_Sales_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <EntitySet Name="Inventories" EntityType="EvenselPOSModel.Inventory" />
+          <EntitySet Name="Items" EntityType="EvenselPOSModel.Item" />
+          <AssociationSet Name="FK_Inventory_Item" Association="EvenselPOSModel.FK_Inventory_Item">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="Inventory" EntitySet="Inventories" />
+          </AssociationSet>
+          <EntitySet Name="SalesDetails" EntityType="EvenselPOSModel.SalesDetail" />
+          <AssociationSet Name="FK_SalesDetails_Sales" Association="EvenselPOSModel.FK_SalesDetails_Sales">
+            <End Role="Sale" EntitySet="Sales" />
+            <End Role="SalesDetail" EntitySet="SalesDetails" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Config">
           <Key>
@@ -258,14 +450,6 @@
           <Property Name="Key" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Value" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Customer">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Address" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-        </EntityType>
         <EntityType Name="Gift">
           <Key>
             <PropertyRef Name="ID" />
@@ -273,47 +457,6 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="GiftNumber" Type="Binary" Nullable="false" MaxLength="50" FixedLength="false" />
           <Property Name="Value" Type="Double" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Inventory">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="TransID" Type="Int32" Nullable="false" />
-          <Property Name="TransItem" Type="Int32" Nullable="false" />
-          <Property Name="TransUser" Type="Int32" Nullable="false" />
-          <Property Name="TransDate" Type="DateTime" Nullable="false" />
-          <Property Name="TransComment" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="Invoice">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="CustomeID" Type="Int32" Nullable="false" />
-          <Property Name="ItemID" Type="Int32" Nullable="false" />
-          <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="Qty" Type="Double" Nullable="false" />
-          <Property Name="SubTotal" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="DateTime" Type="DateTime" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="IsActive" Type="Byte" />
-        </EntityType>
-        <EntityType Name="Item">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Category" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="SupplierID" Type="Int32" />
-          <Property Name="ItemCode" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="CostPrice" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="Quantity" Type="Double" Nullable="false" />
-          <Property Name="ReOrderLevel" Type="Double" />
-          <Property Name="Location" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="IsActive" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
         </EntityType>
         <EntityType Name="ItemTax">
           <Key>
@@ -359,6 +502,10 @@
           <Property Name="SalesDate" Type="DateTime" Nullable="false" />
           <Property Name="InvoiceID" Type="Int32" Nullable="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Type="Decimal" Name="TotalDiscount" Precision="18" Scale="0" />
+          <NavigationProperty Name="Invoice" Relationship="EvenselPOSModel.FK_Sales_Invoice" FromRole="Sale" ToRole="Invoice" />
+          <NavigationProperty Name="Customer" Relationship="EvenselPOSModel.FK_Sales_Customer" FromRole="Sale" ToRole="Customer" />
+          <NavigationProperty Name="SalesDetails" Relationship="EvenselPOSModel.FK_SalesDetails_Sales" FromRole="Sale" ToRole="SalesDetail" />
         </EntityType>
         <EntityType Name="Supplier">
           <Key>
@@ -425,6 +572,205 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Category1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="InvoiceDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="InvoiceID" Nullable="false" />
+          <Property Type="Int32" Name="ItemID" Nullable="false" />
+          <Property Type="Double" Name="Qty" Nullable="false" />
+          <Property Type="Decimal" Name="UnitPrice" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="SubTotal" Nullable="false" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="InvoicePayment">
+          <Key>
+            <PropertyRef Name="PaymentMethodID" />
+            <PropertyRef Name="InvoiceID" />
+          </Key>
+          <Property Type="Int32" Name="PaymentMethodID" Nullable="false" />
+          <Property Type="Int32" Name="InvoiceID" Nullable="false" />
+          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="PaymentMethod" Relationship="EvenselPOSModel.FK_InvoicePayment_PaymentMethod" FromRole="InvoicePayment" ToRole="PaymentMethod" />
+          <NavigationProperty Name="Invoice" Relationship="EvenselPOSModel.FK_InvoicePayment_Invoice" FromRole="InvoicePayment" ToRole="Invoice" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="ActionDate" Nullable="false" />
+          <Property Type="String" Name="Module" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Description" Nullable="false" />
+          <Property Type="Int32" Name="UserID" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="MethodName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="InvoicePayments" Relationship="EvenselPOSModel.FK_InvoicePayment_PaymentMethod" FromRole="PaymentMethod" ToRole="InvoicePayment" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Stock1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SupplierID" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_InvoicePayment_PaymentMethod">
+          <End Type="EvenselPOSModel.PaymentMethod" Role="PaymentMethod" Multiplicity="1" />
+          <End Type="EvenselPOSModel.InvoicePayment" Role="InvoicePayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethod">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InvoicePayment">
+              <PropertyRef Name="PaymentMethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="CustomeID" Nullable="false" />
+          <Property Type="Decimal" Name="TotalAmount" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Currency" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Type="Decimal" Name="Rate" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="DateTime" Nullable="false" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="Byte" Name="IsActive" />
+          <Property Type="Decimal" Name="TotalDiscount" Precision="18" Scale="0" />
+          <NavigationProperty Name="InvoicePayments" Relationship="EvenselPOSModel.FK_InvoicePayment_Invoice" FromRole="Invoice" ToRole="InvoicePayment" />
+          <NavigationProperty Name="Sales" Relationship="EvenselPOSModel.FK_Sales_Invoice" FromRole="Invoice" ToRole="Sale" />
+        </EntityType>
+        <Association Name="FK_InvoicePayment_Invoice">
+          <End Type="EvenselPOSModel.Invoice" Role="Invoice" Multiplicity="1" />
+          <End Type="EvenselPOSModel.InvoicePayment" Role="InvoicePayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InvoicePayment">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sales_Invoice">
+          <End Type="EvenselPOSModel.Invoice" Role="Invoice" Multiplicity="1" />
+          <End Type="EvenselPOSModel.Sale" Role="Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="State" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Country" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ZipCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Phone" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sales" Relationship="EvenselPOSModel.FK_Sales_Customer" FromRole="Customer" ToRole="Sale" />
+        </EntityType>
+        <Association Name="FK_Sales_Customer">
+          <End Type="EvenselPOSModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="EvenselPOSModel.Sale" Role="Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="ItemID" Nullable="false" />
+          <Property Type="Int32" Name="ReOrderLevel" Nullable="false" />
+          <Property Type="Int32" Name="QtyOnHand" Nullable="false" />
+          <Property Type="String" Name="Location" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="LastUpdateDate" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="EvenselPOSModel.FK_Inventory_Item" FromRole="Inventory" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Category" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="SupplierID" />
+          <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="CostPrice" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="UnitPrice" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="IsActive" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="Int32" Name="CategoryID" />
+          <NavigationProperty Name="Inventories" Relationship="EvenselPOSModel.FK_Inventory_Item" FromRole="Item" ToRole="Inventory" />
+        </EntityType>
+        <Association Name="FK_Inventory_Item">
+          <End Type="EvenselPOSModel.Item" Role="Item" Multiplicity="1" />
+          <End Type="EvenselPOSModel.Inventory" Role="Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SalesDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="SalesID" Nullable="false" />
+          <Property Type="Int32" Name="ItemID" Nullable="false" />
+          <Property Type="Double" Name="Qty" Nullable="false" />
+          <Property Type="Decimal" Name="UnitPrice" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="SubTotal" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Double" Name="Discount" />
+          <NavigationProperty Name="Sale" Relationship="EvenselPOSModel.FK_SalesDetails_Sales" FromRole="SalesDetail" ToRole="Sale" />
+        </EntityType>
+        <Association Name="FK_SalesDetails_Sales">
+          <End Type="EvenselPOSModel.Sale" Role="Sale" Multiplicity="1" />
+          <End Type="EvenselPOSModel.SalesDetail" Role="SalesDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SalesDetail">
+              <PropertyRef Name="SalesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -435,47 +781,10 @@
             <ScalarProperty Name="Key" ColumnName="Key" />
             <ScalarProperty Name="Value" ColumnName="Value" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Customers"><EntityTypeMapping TypeName="EvenselPOSModel.Customer"><MappingFragment StoreEntitySet="Customer">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="Address" ColumnName="Address" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Gifts"><EntityTypeMapping TypeName="EvenselPOSModel.Gift"><MappingFragment StoreEntitySet="Gift">
             <ScalarProperty Name="ID" ColumnName="ID" />
             <ScalarProperty Name="GiftNumber" ColumnName="GiftNumber" />
             <ScalarProperty Name="Value" ColumnName="Value" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Inventories"><EntityTypeMapping TypeName="EvenselPOSModel.Inventory"><MappingFragment StoreEntitySet="Inventory">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="TransID" ColumnName="TransID" />
-            <ScalarProperty Name="TransItem" ColumnName="TransItem" />
-            <ScalarProperty Name="TransUser" ColumnName="TransUser" />
-            <ScalarProperty Name="TransDate" ColumnName="TransDate" />
-            <ScalarProperty Name="TransComment" ColumnName="TransComment" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Invoices"><EntityTypeMapping TypeName="EvenselPOSModel.Invoice"><MappingFragment StoreEntitySet="Invoice">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="CustomeID" ColumnName="CustomeID" />
-            <ScalarProperty Name="ItemID" ColumnName="ItemID" />
-            <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-            <ScalarProperty Name="Qty" ColumnName="Qty" />
-            <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
-            <ScalarProperty Name="DateTime" ColumnName="DateTime" />
-            <ScalarProperty Name="UserID" ColumnName="UserID" />
-            <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Items"><EntityTypeMapping TypeName="EvenselPOSModel.Item"><MappingFragment StoreEntitySet="Item">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="Category" ColumnName="Category" />
-            <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-            <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
-            <ScalarProperty Name="Description" ColumnName="Description" />
-            <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
-            <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-            <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-            <ScalarProperty Name="ReOrderLevel" ColumnName="ReOrderLevel" />
-            <ScalarProperty Name="Location" ColumnName="Location" />
-            <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="ItemTaxes"><EntityTypeMapping TypeName="EvenselPOSModel.ItemTax"><MappingFragment StoreEntitySet="ItemTax">
             <ScalarProperty Name="ID" ColumnName="ID" />
@@ -500,7 +809,8 @@
             <ScalarProperty Name="Role1" ColumnName="Role" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Sales"><EntityTypeMapping TypeName="EvenselPOSModel.Sale"><MappingFragment StoreEntitySet="Sales">
-            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="TotalDiscount" ColumnName="TotalDiscount" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
             <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
             <ScalarProperty Name="SalesDate" ColumnName="SalesDate" />
             <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
@@ -532,6 +842,134 @@
             <ScalarProperty Name="UserID" ColumnName="UserID" />
             <ScalarProperty Name="Module" ColumnName="Module" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="EvenselPOSModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Category1" ColumnName="Category" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceDetails">
+            <EntityTypeMapping TypeName="EvenselPOSModel.InvoiceDetail">
+              <MappingFragment StoreEntitySet="InvoiceDetails">
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoicePayments">
+            <EntityTypeMapping TypeName="EvenselPOSModel.InvoicePayment">
+              <MappingFragment StoreEntitySet="InvoicePayment">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="EvenselPOSModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Module" ColumnName="Module" />
+                <ScalarProperty Name="ActionDate" ColumnName="ActionDate" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentMethods">
+            <EntityTypeMapping TypeName="EvenselPOSModel.PaymentMethod">
+              <MappingFragment StoreEntitySet="PaymentMethod">
+                <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stocks">
+            <EntityTypeMapping TypeName="EvenselPOSModel.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="Stock1" ColumnName="Stock" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="EvenselPOSModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="TotalDiscount" ColumnName="TotalDiscount" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="CustomeID" ColumnName="CustomeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="EvenselPOSModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventories">
+            <EntityTypeMapping TypeName="EvenselPOSModel.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="QtyOnHand" ColumnName="QtyOnHand" />
+                <ScalarProperty Name="ReOrderLevel" ColumnName="ReOrderLevel" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="EvenselPOSModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesDetails">
+            <EntityTypeMapping TypeName="EvenselPOSModel.SalesDetail">
+              <MappingFragment StoreEntitySet="SalesDetails">
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="SalesID" ColumnName="SalesID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -552,13 +990,9 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="EvenselPOS">
+      <Diagram Name="EvenselPOS" ZoomLevel="89">
         <EntityTypeShape EntityType="EvenselPOSModel.Config" Width="1.5" PointX="2.75" PointY="4.75" Height="1.4033821614583335" IsExpanded="true" />
-        <EntityTypeShape EntityType="EvenselPOSModel.Customer" Width="1.5" PointX="4.75" PointY="4.75" Height="1.5956835937499996" IsExpanded="true" />
         <EntityTypeShape EntityType="EvenselPOSModel.Gift" Width="1.5" PointX="5.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="EvenselPOSModel.Inventory" Width="1.5" PointX="6.75" PointY="3.75" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="EvenselPOSModel.Invoice" Width="1.5" PointX="6.75" PointY="6.75" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="EvenselPOSModel.Item" Width="1.5" PointX="2.75" PointY="7.75" Height="3.1340950520833317" IsExpanded="true" />
         <EntityTypeShape EntityType="EvenselPOSModel.ItemTax" Width="1.5" PointX="7.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
         <EntityTypeShape EntityType="EvenselPOSModel.Module" Width="1.5" PointX="8.75" PointY="3.75" Height="1.4033821614583317" IsExpanded="true" />
         <EntityTypeShape EntityType="EvenselPOSModel.Receive" Width="1.5" PointX="8.75" PointY="6.75" Height="2.3648893229166674" IsExpanded="true" />
@@ -576,6 +1010,52 @@
           <ConnectorPoint PointX="2.25" PointY="6.5980843098958362" />
           <ConnectorPoint PointX="4.40625" PointY="6.5980843098958362" />
           <ConnectorPoint PointX="4.40625" PointY="3.047587890624996" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="EvenselPOSModel.Category" Width="1.5" PointX="11.75" PointY="10.75" Height="1.4033821614583388" />
+        <EntityTypeShape EntityType="EvenselPOSModel.InvoiceDetail" Width="1.5" PointX="12.75" PointY="0.75" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="EvenselPOSModel.InvoicePayment" Width="1.5" PointX="11.25" PointY="8.125" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="EvenselPOSModel.Log" Width="1.5" PointX="0.75" PointY="12.75" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="EvenselPOSModel.PaymentMethod" Width="1.5" PointX="9.125" PointY="11.875" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="EvenselPOSModel.Stock" Width="1.5" PointX="2.75" PointY="13.75" Height="1.5956835937500031" />
+        <AssociationConnector Association="EvenselPOSModel.FK_InvoicePayment_PaymentMethod" >
+          <ConnectorPoint PointX="10.46875" PointY="11.875" />
+          <ConnectorPoint PointX="10.46875" PointY="9.641337890625" />
+          <ConnectorPoint PointX="11.25" PointY="9.641337890625" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="EvenselPOSModel.Invoice" Width="1.5" PointX="7.5" PointY="0.75" Height="3.1340950520833388" />
+        <AssociationConnector Association="EvenselPOSModel.FK_InvoicePayment_Invoice" >
+          <ConnectorPoint PointX="8.09375" PointY="3.8840950520833388" />
+          <ConnectorPoint PointX="8.09375" PointY="9.3781111067708327" />
+          <ConnectorPoint PointX="11.25" PointY="9.3781111067708327" />
+        </AssociationConnector>
+        <AssociationConnector Association="EvenselPOSModel.FK_Sales_Invoice" >
+          <ConnectorPoint PointX="9" PointY="2.9538378906249996" />
+          <ConnectorPoint PointX="9.75" PointY="2.9538378906249996" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="EvenselPOSModel.Customer" Width="1.5" PointX="13.375" PointY="4" Height="3.1340950520833246" />
+        <AssociationConnector Association="EvenselPOSModel.FK_Sales_Customer" >
+          <ConnectorPoint PointX="13.375" PointY="6.2401432291666659" />
+          <ConnectorPoint PointX="12.583333333333334" PointY="6.240143229166665" />
+          <ConnectorPoint PointX="12.416666666666666" PointY="6.2401432291666659" />
+          <ConnectorPoint PointX="10.5" PointY="6.2401432291666659" />
+          <ConnectorPoint PointX="10.5" PointY="3.4994921875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="EvenselPOSModel.Inventory" Width="1.5" PointX="5" PointY="7.375" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="EvenselPOSModel.Item" Width="1.5" PointX="2.75" PointY="17.125" Height="2.9417936197916674" />
+        <AssociationConnector Association="EvenselPOSModel.FK_Inventory_Item" >
+          <ConnectorPoint PointX="4.25" PointY="18.595896809895834" />
+          <ConnectorPoint PointX="6.40625" PointY="18.595896809895834" />
+          <ConnectorPoint PointX="6.40625" PointY="9.7398893229166656" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="EvenselPOSModel.SalesDetail" Width="1.5" PointX="12" PointY="13.875" Height="2.5571907552083228" />
+        <AssociationConnector Association="EvenselPOSModel.FK_SalesDetails_Sales" >
+          <ConnectorPoint PointX="11.25" PointY="2.12474609375" />
+          <ConnectorPoint PointX="12.5" PointY="2.12474609375" />
+          <ConnectorPoint PointX="12.5" PointY="7.875" />
+          <ConnectorPoint PointX="13.5" PointY="7.875" />
+          <ConnectorPoint PointX="13.5" PointY="13.5" />
+          <ConnectorPoint PointX="12.75" PointY="13.5" />
+          <ConnectorPoint PointX="12.75" PointY="13.875" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
