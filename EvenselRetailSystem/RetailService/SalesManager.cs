@@ -38,6 +38,8 @@ namespace Evensel.RetailService
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
             {
+                context.ContextOptions.LazyLoadingEnabled = false;
+
                 var query = from n in context.Sales
                             where n.ID == ID
                             select n;
