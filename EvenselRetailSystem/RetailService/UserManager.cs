@@ -89,7 +89,7 @@ namespace Evensel.RetailService
             }
             
         }
-
+        //userauthentication
         public List<Role> UserAuthentication(string username, string password)
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
