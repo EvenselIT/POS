@@ -67,6 +67,28 @@ namespace Evensel.RetailService
             }
         }
 
+        public override void Update(User obj)
+        {
+            using (EvenselPOSEntities context = new EvenselPOSEntities())
+            {
+                var query = from n in context.Users
+                            where n.ID == obj.ID
+                            select n;
+
+                if (query != null)
+                {
+                    User oldUser = query.SingleOrDefault();
+                    if (true )
+                    {
+                       // update code should go hear
+                    }
+                    
+                }
+                
+            }
+            
+        }
+
         public List<Role> UserAuthentication(string username, string password)
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
@@ -107,5 +129,6 @@ namespace Evensel.RetailService
             return null;
             
          }
+
     }
 }
