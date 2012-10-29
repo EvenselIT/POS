@@ -8,6 +8,7 @@ namespace Evensel.RetailService
 {
     public class UserManager : AbstractManager <User>
     {
+        //Adding a New Customer
         public override int AddNew(User obj)
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
