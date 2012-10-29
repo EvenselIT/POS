@@ -54,6 +54,7 @@
     <Compile Include="Extender.cs" />
     <Compile Include="Framework\AbstractManager.cs" />
     <Compile Include="GiftManager.cs" />
+    <Compile Include="InventoryManager.cs" />
     <Compile Include="ItemManager.cs" />
     <Compile Include="LogManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
