@@ -15,5 +15,10 @@ namespace EvenselPOS
         {
             InitializeComponent();
         }
+
+        private void btnLogIn_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Login Button Clicked");
+        }
     }
 }
