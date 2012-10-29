@@ -6,23 +6,25 @@ using RetailService.Framework;
 
 namespace Evensel.RetailService
 {
-    class UserManager : AbstractManager <User>
+    public class ItemManager : AbstractManager<Item>
     {
-        public override int AddNew(User obj)
+        #region Basic CRUD operation
+
+        public override int AddNew(Item obj)
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
             {
-                context.AddToUsers(obj);
+                context.AddToItems(obj);
+                context.SaveChanges();
             }
-
             return 1;
         }
 
-        public override List<User> SelectAll()
+        public override List<Item> SelectAll()
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
             {
-                var query = from n in context.Users
+                var query = from n in context.Items
                             select n;
 
                 if (query != null)
@@ -30,14 +32,15 @@ namespace Evensel.RetailService
                     return query.ToList();
                 }
             }
+
             return null;
         }
 
-        public override User GetByID(int ID)
+        public override Item GetByID(int ID)
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
             {
-                var query = from n in context.Users
+                var query = from n in context.Items
                             where n.ID == ID
                             select n;
 
@@ -54,17 +57,19 @@ namespace Evensel.RetailService
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
             {
-                var query = from n in context.Users
+                var query = from n in context.Items
                             where n.ID == ID
                             select n;
 
                 if (query != null)
                 {
-                    User user =  query.SingleOrDefault();
-                    context.DeleteObject(user);
+                    var selectedObject = query.SingleOrDefault();
+                    context.DeleteObject(selectedObject);
                     context.SaveChanges();
                 }
             }
         }
+
+        #endregion
     }
 }
