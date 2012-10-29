@@ -11,6 +11,7 @@ namespace RetailService.Framework
         public abstract List<T> SelectAll();
         public abstract T GetByID(int ID);
         public abstract void Delete(int ID);
+        public abstract void Update(T obj);
         
         
     }
