@@ -20,17 +20,51 @@ namespace RetailService
 
         public override List<User> SelectAll()
         {
-            throw new NotImplementedException();
+            using (EvenselPOSEntities context = new EvenselPOSEntities())
+            {
+                var query = from n in context.Users
+                            select n;
+
+                if (query != null)
+                {
+                    return query.ToList();
+                }
+            }
+            return null;
         }
 
         public override User GetByID(int ID)
         {
-            throw new NotImplementedException();
+            using (EvenselPOSEntities context = new EvenselPOSEntities())
+            {
+                var query = from n in context.Users
+                            where n.ID == ID
+                            select n;
+
+                if (query != null)
+                {
+                    return query.SingleOrDefault();
+                }
+            }
+
+            return null;
         }
 
         public override void Delete(int ID)
         {
-            throw new NotImplementedException();
+            using (EvenselPOSEntities context = new EvenselPOSEntities())
+            {
+                var query = from n in context.Users
+                            where n.ID == ID
+                            select n;
+
+                if (query != null)
+                {
+                    User user =  query.SingleOrDefault();
+                    context.DeleteObject(user);
+                    context.SaveChanges();
+                }
+            }
         }
     }
 }
