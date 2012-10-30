@@ -71,8 +71,6 @@ namespace Evensel.RetailService
             }
         }
 
-        #endregion
-
         public override bool? Update(Item obj)
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
@@ -82,5 +80,9 @@ namespace Evensel.RetailService
                 return IsChanged(context.SaveChanges());
             }
         }
+
+        #endregion
+
+
     }
 }
