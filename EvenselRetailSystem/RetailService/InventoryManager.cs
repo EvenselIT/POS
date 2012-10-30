@@ -51,7 +51,7 @@ namespace Evensel.RetailService
             return null;
         }
 
-        public override void Delete(int ID)
+        public override bool? Delete(int ID)
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
             {
@@ -63,8 +63,10 @@ namespace Evensel.RetailService
                 {
                     var selectedObject = query.SingleOrDefault();
                     context.DeleteObject(selectedObject);
-                    context.SaveChanges();
+                    return IsChanged(context.SaveChanges());
                 }
+
+                return null;
             }
         }
 
@@ -72,7 +74,7 @@ namespace Evensel.RetailService
         /// update inventory, set last update date as datetime now.
         /// </summary>
         /// <param name="obj"></param>
-        public override void Update(Inventory obj)
+        public override bool? Update(Inventory obj)
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
             {
@@ -82,16 +84,11 @@ namespace Evensel.RetailService
 
                 if (query != null)
                 {
-                    var selectedObject = query.SingleOrDefault();
-
-                    selectedObject.Location = obj.Location;
-                    selectedObject.QtyOnHand = obj.QtyOnHand;
-                    selectedObject.ReOrderLevel = obj.ReOrderLevel;
-                    selectedObject.LastUpdateDate = DateTime.Now;
-
-
-                    context.SaveChanges();
+                    context.AddToInventories(obj);
+                    context.ObjectStateManager.ChangeObjectState(obj, System.Data.EntityState.Modified);
+                    return IsChanged(context.SaveChanges());
                 }
+                return null;
             }
         }
     }

@@ -46,12 +46,12 @@ namespace Evensel.RetailService
                 {
                     return query.SingleOrDefault();
                 }
-            }
 
-            return null;
+                return null;
+            }
         }
 
-        public override void Delete(int ID)
+        public override bool? Delete(int ID)
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
             {
@@ -63,12 +63,14 @@ namespace Evensel.RetailService
                 {
                     User user =  query.SingleOrDefault();
                     context.DeleteObject(user);
-                    context.SaveChanges();
+                    return IsChanged(context.SaveChanges());
                 }
+
+                return null;
             }
         }
 
-        public override void Update(User obj)
+        public override bool? Update(User obj)
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
             {
@@ -78,18 +80,14 @@ namespace Evensel.RetailService
 
                 if (query != null)
                 {
-                    User oldUser = query.SingleOrDefault();
-                    // check user object are not equal
-                    if (true )
-                    {
-                       // update code should go hear
-                    }
-                    
+                    context.Users.DeleteObject(query.FirstOrDefault());
+                    context.AddToUsers(obj);
+                    return IsChanged(context.SaveChanges());
                 }
-                
-            }
-            
+                return null;
+            }            
         }
+
         //userauthentication
         //
         public List<Role> UserAuthentication(string username, string password)

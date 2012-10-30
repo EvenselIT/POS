@@ -53,7 +53,7 @@ namespace Evensel.RetailService
             return null;
         }
 
-        public override void Delete(int ID)
+        public override bool? Delete(int ID)
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
             {
@@ -65,12 +65,13 @@ namespace Evensel.RetailService
                 {
                     var selectedObject = query.SingleOrDefault();
                     context.DeleteObject(selectedObject);
-                    context.SaveChanges();
+                    return IsChanged(context.SaveChanges());
                 }
+                return null;
             }
         }
 
-        public override void Update(Sale obj)
+        public override bool? Update(Sale obj)
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
             {
@@ -80,16 +81,11 @@ namespace Evensel.RetailService
 
                 if (query != null)
                 {
-                    var selectedObject = query.SingleOrDefault();
-
-                    selectedObject.CustomerID = obj.CustomerID;
-                    selectedObject.SalesDate = obj.SalesDate;
-                    selectedObject.UserID = obj.UserID;
-                    selectedObject.TotalDiscount = obj.TotalDiscount;
-
-
-                    context.SaveChanges();
+                    context.AddToSales(obj);
+                    context.ObjectStateManager.ChangeObjectState(obj, System.Data.EntityState.Modified);
+                    return IsChanged(context.SaveChanges());
                 }
+                return null;
             }
         }
     }

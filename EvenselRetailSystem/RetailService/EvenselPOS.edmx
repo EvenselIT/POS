@@ -1018,15 +1018,17 @@
           <ConnectorPoint PointX="10.46875" PointY="9.641337890625" />
           <ConnectorPoint PointX="11.25" PointY="9.641337890625" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="EvenselPOSModel.Invoice" Width="1.5" PointX="7.5" PointY="0.75" Height="3.1340950520833388" />
+        <EntityTypeShape EntityType="EvenselPOSModel.Invoice" Width="1.5" PointX="5.875" PointY="3.125" Height="3.1340950520833388" />
         <AssociationConnector Association="EvenselPOSModel.FK_InvoicePayment_Invoice" >
-          <ConnectorPoint PointX="8.09375" PointY="3.8840950520833388" />
-          <ConnectorPoint PointX="8.09375" PointY="9.3781111067708327" />
-          <ConnectorPoint PointX="11.25" PointY="9.3781111067708327" />
+          <ConnectorPoint PointX="6.96875" PointY="6.2590950520833388" />
+          <ConnectorPoint PointX="6.96875" PointY="9.9538378906250031" />
+          <ConnectorPoint PointX="10.385416666666666" PointY="9.9538378906250031" />
+          <ConnectorPoint PointX="10.552083333333334" PointY="9.9538378906250031" />
+          <ConnectorPoint PointX="11.25" PointY="9.9538378906250031" />
         </AssociationConnector>
         <AssociationConnector Association="EvenselPOSModel.FK_Sales_Invoice" >
-          <ConnectorPoint PointX="9" PointY="2.9538378906249996" />
-          <ConnectorPoint PointX="9.75" PointY="2.9538378906249996" />
+          <ConnectorPoint PointX="7.375" PointY="3.31224609375" />
+          <ConnectorPoint PointX="9.75" PointY="3.31224609375" />
         </AssociationConnector>
         <EntityTypeShape EntityType="EvenselPOSModel.Customer" Width="1.5" PointX="13.375" PointY="4" Height="3.1340950520833246" />
         <AssociationConnector Association="EvenselPOSModel.FK_Sales_Customer" >

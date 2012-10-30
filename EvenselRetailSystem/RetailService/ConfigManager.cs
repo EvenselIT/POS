@@ -51,7 +51,7 @@ namespace Evensel.RetailService
             return null;
         }
 
-        public override void Delete(int ID)
+        public override bool? Delete(int ID)
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
             {
@@ -63,12 +63,13 @@ namespace Evensel.RetailService
                 {
                     var selectedObject = query.SingleOrDefault();
                     context.DeleteObject(selectedObject);
-                    context.SaveChanges();
+                    return IsChanged(context.SaveChanges());
                 }
+                return null;
             }
         }
 
-        public override void Update(Config obj)
+        public override bool? Update(Config obj)
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
             {
@@ -78,11 +79,11 @@ namespace Evensel.RetailService
 
                 if (query != null)
                 {
-                    var value = query.SingleOrDefault();
-                    value.Value = obj.Value;
-
-                    context.SaveChanges();
+                    context.AddToConfigs(obj);
+                    context.ObjectStateManager.ChangeObjectState(obj, System.Data.EntityState.Modified);
+                    return IsChanged(context.SaveChanges());
                 }
+                return null;
             }
         }
     }

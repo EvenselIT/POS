@@ -46,6 +46,11 @@ namespace Evensel.EvenselToolkit
             this.dataGridView1.DataSource = databindObj; 
         }
 
+        private void btnFind_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }

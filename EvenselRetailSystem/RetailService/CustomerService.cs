@@ -8,7 +8,7 @@ namespace Evensel.RetailService
 {
     public class CustomerService : AbstractManager<Customer>
     {
-        #region Basic CRUD Opearations  
+        #region Basic CRUD Opearations
 
         public override int AddNew(Customer obj)
         {
@@ -53,7 +53,7 @@ namespace Evensel.RetailService
             return null;
         }
 
-        public override void Delete(int ID)
+        public override bool? Delete(int ID)
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
             {
@@ -65,16 +65,35 @@ namespace Evensel.RetailService
                 {
                     var selectedObject = query.SingleOrDefault();
                     context.DeleteObject(selectedObject);
-                    context.SaveChanges();
+                    return IsChanged(context.SaveChanges());
                 }
+                return null;
             }
         }
 
         #endregion
 
-        public override void Update(Customer obj)
+        /// <summary>
+        /// Update Customer Details
+        /// </summary>
+        /// <param name="obj">New Customer Object</param>
+        /// <returns>Return true if suceed else retrun false, If Customer Not Found Return null</returns>
+        public override bool? Update(Customer obj)
         {
-            throw new NotImplementedException();
+            using (EvenselPOSEntities context = new EvenselPOSEntities())
+            {
+                //var query = from i in context.Customers
+                //            where i.ID == obj.ID
+                //            select i;
+
+                //if (query != null)
+                //{
+                context.Customers.AddObject(obj);
+                context.AddToCustomers(obj);
+                return IsChanged(context.SaveChanges());
+                //}
+                //return null;
+            }
         }
     }
 }

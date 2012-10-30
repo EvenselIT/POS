@@ -70,6 +70,7 @@
             this.btnFind.TabIndex = 3;
             this.btnFind.Text = "button1";
             this.btnFind.UseVisualStyleBackColor = true;
+            this.btnFind.Click += new System.EventHandler(this.btnFind_Click_1);
             // 
             // cmbSearchBy
             // 
