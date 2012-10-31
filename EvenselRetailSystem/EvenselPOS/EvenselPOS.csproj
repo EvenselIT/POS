@@ -119,6 +119,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\checkOut.png" />
+    <None Include="images\Common\edit.png" />
+    <None Include="images\Common\select.png" />
     <Content Include="images\customerManagment.png" />
     <Content Include="images\itemManagement.png" />
     <Content Include="images\logOut.png" />

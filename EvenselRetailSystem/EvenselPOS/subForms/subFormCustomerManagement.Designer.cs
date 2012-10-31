@@ -41,14 +41,14 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dGridAllCustomers = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnAddCustomer = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtMobile = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtCountry = new System.Windows.Forms.TextBox();
+            this.txtCity = new System.Windows.Forms.TextBox();
             this.txtState = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtLastName = new System.Windows.Forms.TextBox();
@@ -57,6 +57,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -65,12 +66,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControllerCustomerManagement = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnUpdateCustomerDetails = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.txtEditMobile = new System.Windows.Forms.TextBox();
             this.txtEditPhone = new System.Windows.Forms.TextBox();
             this.txtEditEMail = new System.Windows.Forms.TextBox();
             this.txtEditCountry = new System.Windows.Forms.TextBox();
+            this.txtEditCity = new System.Windows.Forms.TextBox();
             this.txtEditState = new System.Windows.Forms.TextBox();
             this.txtEditAddress = new System.Windows.Forms.TextBox();
             this.txtEditLastName = new System.Windows.Forms.TextBox();
@@ -79,27 +79,27 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.txtEditCity = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.txtCity = new System.Windows.Forms.TextBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnAddCustomer = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnUpdateCustomerDetails = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGridAllCustomers)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControllerCustomerManagement.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -121,25 +121,25 @@
             this.saveToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // editToolStripMenuItem
@@ -148,25 +148,25 @@
             this.undoToolStripMenuItem,
             this.redoToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // undoToolStripMenuItem
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
             this.undoToolStripMenuItem.Text = "Undo";
             // 
             // redoToolStripMenuItem
             // 
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
             this.redoToolStripMenuItem.Text = "Redo";
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // tabPage3
@@ -194,18 +194,19 @@
             this.dGridAllCustomers.Size = new System.Drawing.Size(643, 313);
             this.dGridAllCustomers.TabIndex = 1;
             // 
-            // button1
+            // contextMenuStrip1
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(254, 325);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(153, 55);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Select Customer";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteCustomerToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(155, 26);
+            this.contextMenuStrip1.Click += new System.EventHandler(this.contextMenuStrip1_Click);
+            // 
+            // deleteCustomerToolStripMenuItem
+            // 
+            this.deleteCustomerToolStripMenuItem.Name = "deleteCustomerToolStripMenuItem";
+            this.deleteCustomerToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.deleteCustomerToolStripMenuItem.Text = "Delete Customer";
             // 
             // tabPage2
             // 
@@ -239,28 +240,6 @@
             this.tabPage2.Text = "Add New Customer";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btnAddCustomer
-            // 
-            this.btnAddCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddCustomer.Image = ((System.Drawing.Image)(resources.GetObject("btnAddCustomer.Image")));
-            this.btnAddCustomer.Location = new System.Drawing.Point(106, 325);
-            this.btnAddCustomer.Name = "btnAddCustomer";
-            this.btnAddCustomer.Size = new System.Drawing.Size(157, 55);
-            this.btnAddCustomer.TabIndex = 13;
-            this.btnAddCustomer.Text = "Add Customer";
-            this.btnAddCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAddCustomer.UseVisualStyleBackColor = true;
-            this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(541, 29);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(90, 90);
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
-            // 
             // txtMobile
             // 
             this.txtMobile.Location = new System.Drawing.Point(106, 299);
@@ -288,6 +267,13 @@
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.Size = new System.Drawing.Size(127, 20);
             this.txtCountry.TabIndex = 6;
+            // 
+            // txtCity
+            // 
+            this.txtCity.Location = new System.Drawing.Point(106, 166);
+            this.txtCity.Name = "txtCity";
+            this.txtCity.Size = new System.Drawing.Size(127, 20);
+            this.txtCity.TabIndex = 5;
             // 
             // txtState
             // 
@@ -351,6 +337,15 @@
             this.label7.Size = new System.Drawing.Size(36, 13);
             this.label7.TabIndex = 9;
             this.label7.Text = "E Mail";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(44, 169);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(24, 13);
+            this.label20.TabIndex = 4;
+            this.label20.Text = "City";
             // 
             // label6
             // 
@@ -451,28 +446,6 @@
             this.tabPage1.Text = "Edit Customer Details";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // btnUpdateCustomerDetails
-            // 
-            this.btnUpdateCustomerDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateCustomerDetails.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateCustomerDetails.Image")));
-            this.btnUpdateCustomerDetails.Location = new System.Drawing.Point(106, 325);
-            this.btnUpdateCustomerDetails.Name = "btnUpdateCustomerDetails";
-            this.btnUpdateCustomerDetails.Size = new System.Drawing.Size(157, 55);
-            this.btnUpdateCustomerDetails.TabIndex = 33;
-            this.btnUpdateCustomerDetails.Text = "Update Customer";
-            this.btnUpdateCustomerDetails.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnUpdateCustomerDetails.UseVisualStyleBackColor = true;
-            this.btnUpdateCustomerDetails.Click += new System.EventHandler(this.btnUpdateCustomerDetails_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(540, 29);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(90, 90);
-            this.pictureBox2.TabIndex = 32;
-            this.pictureBox2.TabStop = false;
-            // 
             // txtEditMobile
             // 
             this.txtEditMobile.Location = new System.Drawing.Point(106, 299);
@@ -500,6 +473,13 @@
             this.txtEditCountry.Name = "txtEditCountry";
             this.txtEditCountry.Size = new System.Drawing.Size(127, 20);
             this.txtEditCountry.TabIndex = 25;
+            // 
+            // txtEditCity
+            // 
+            this.txtEditCity.Location = new System.Drawing.Point(106, 166);
+            this.txtEditCity.Name = "txtEditCity";
+            this.txtEditCity.Size = new System.Drawing.Size(127, 20);
+            this.txtEditCity.TabIndex = 24;
             // 
             // txtEditState
             // 
@@ -565,6 +545,15 @@
             this.label12.TabIndex = 29;
             this.label12.Text = "E Mail";
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(44, 169);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(24, 13);
+            this.label19.TabIndex = 21;
+            this.label19.Text = "City";
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -619,51 +608,62 @@
             this.label18.TabIndex = 16;
             this.label18.Text = "ID";
             // 
-            // label19
+            // button1
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(44, 169);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(24, 13);
-            this.label19.TabIndex = 21;
-            this.label19.Text = "City";
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(254, 325);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(153, 55);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Select Customer";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // txtEditCity
+            // btnAddCustomer
             // 
-            this.txtEditCity.Location = new System.Drawing.Point(106, 166);
-            this.txtEditCity.Name = "txtEditCity";
-            this.txtEditCity.Size = new System.Drawing.Size(127, 20);
-            this.txtEditCity.TabIndex = 24;
+            this.btnAddCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddCustomer.Image = ((System.Drawing.Image)(resources.GetObject("btnAddCustomer.Image")));
+            this.btnAddCustomer.Location = new System.Drawing.Point(106, 325);
+            this.btnAddCustomer.Name = "btnAddCustomer";
+            this.btnAddCustomer.Size = new System.Drawing.Size(157, 55);
+            this.btnAddCustomer.TabIndex = 13;
+            this.btnAddCustomer.Text = "Add Customer";
+            this.btnAddCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAddCustomer.UseVisualStyleBackColor = true;
+            this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
             // 
-            // label20
+            // pictureBox1
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(44, 169);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(24, 13);
-            this.label20.TabIndex = 4;
-            this.label20.Text = "City";
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(541, 29);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(90, 90);
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
             // 
-            // txtCity
+            // btnUpdateCustomerDetails
             // 
-            this.txtCity.Location = new System.Drawing.Point(106, 166);
-            this.txtCity.Name = "txtCity";
-            this.txtCity.Size = new System.Drawing.Size(127, 20);
-            this.txtCity.TabIndex = 5;
+            this.btnUpdateCustomerDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateCustomerDetails.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateCustomerDetails.Image")));
+            this.btnUpdateCustomerDetails.Location = new System.Drawing.Point(106, 325);
+            this.btnUpdateCustomerDetails.Name = "btnUpdateCustomerDetails";
+            this.btnUpdateCustomerDetails.Size = new System.Drawing.Size(157, 55);
+            this.btnUpdateCustomerDetails.TabIndex = 33;
+            this.btnUpdateCustomerDetails.Text = "Update Customer";
+            this.btnUpdateCustomerDetails.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnUpdateCustomerDetails.UseVisualStyleBackColor = true;
+            this.btnUpdateCustomerDetails.Click += new System.EventHandler(this.btnUpdateCustomerDetails_Click);
             // 
-            // contextMenuStrip1
+            // pictureBox2
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteCustomerToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(163, 48);
-            this.contextMenuStrip1.Click += new System.EventHandler(this.contextMenuStrip1_Click);
-            // 
-            // deleteCustomerToolStripMenuItem
-            // 
-            this.deleteCustomerToolStripMenuItem.Name = "deleteCustomerToolStripMenuItem";
-            this.deleteCustomerToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.deleteCustomerToolStripMenuItem.Text = "Delete Customer";
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(540, 29);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(90, 90);
+            this.pictureBox2.TabIndex = 32;
+            this.pictureBox2.TabStop = false;
             // 
             // subFormCustomerManagement
             // 
@@ -682,14 +682,14 @@
             this.menuStrip1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dGridAllCustomers)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControllerCustomerManagement.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
