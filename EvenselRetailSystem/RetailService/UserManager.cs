@@ -88,8 +88,12 @@ namespace Evensel.RetailService
             }            
         }
 
-        //userauthentication
-        //
+        /// <summary>
+        /// User Authentcation and retrive the level of roles assigned to the user 
+        /// </summary>
+        /// <param name="username">UserName</param>
+        /// <param name="password">Password</param>
+        /// <returns>Return List of Role</returns>
         public List<Role> UserAuthentication(string username, string password)
         {
             using (EvenselPOSEntities context = new EvenselPOSEntities())
@@ -99,13 +103,13 @@ namespace Evensel.RetailService
                             where n.UserName == username && n.Password == password
                             select n.ID;
 
-                if (usrId != null)
+                if (usrId.Count() != 0)
                 {
                     var roleIds = from n in context.UserRoles
                                 where n.UserID.Equals(usrId)
                                 select n.RoleID;
                     
-                    if (roleIds != null)
+                    if (roleIds.Count() != 0)
                     {
                         foreach (var id in roleIds)
                         {

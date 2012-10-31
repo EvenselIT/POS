@@ -104,6 +104,7 @@
     <EmbeddedResource Include="subForms\subFormSupplierManagement.resx">
       <DependentUpon>subFormSupplierManagement.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="App.Config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
