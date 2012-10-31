@@ -104,14 +104,18 @@ namespace Evensel.RetailService
         /// <returns>Max Customer ID</returns>
         public int getMaxCustomerID() 
         {
+            int max = 1;
             using (EvenselPOSEntities context = new EvenselPOSEntities())
             {
                 var query = (from i in context.Customers
-                             select i.ID).Max();
+                             select i);
 
-
-                return query;
+                if (query != null && query.Count()>0)
+                {
+                    max = query.Max(a=>a.ID);
+                }
             }
+            return max;
         }
     }
 }
