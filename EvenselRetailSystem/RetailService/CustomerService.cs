@@ -85,14 +85,32 @@ namespace Evensel.RetailService
                 //var query = from i in context.Customers
                 //            where i.ID == obj.ID
                 //            select i;
+                
 
                 //if (query != null)
                 //{
-                context.Customers.AddObject(obj);
+
                 context.AddToCustomers(obj);
+                context.ObjectStateManager.ChangeObjectState(obj, System.Data.EntityState.Modified);
                 return IsChanged(context.SaveChanges());
                 //}
                 //return null;
+            }
+        }
+
+        /// <summary>
+        /// Get Maximul Value From the Customer
+        /// </summary>
+        /// <returns>Max Customer ID</returns>
+        public int getMaxCustomerID() 
+        {
+            using (EvenselPOSEntities context = new EvenselPOSEntities())
+            {
+                var query = (from i in context.Customers
+                             select i.ID).Max();
+
+
+                return query;
             }
         }
     }

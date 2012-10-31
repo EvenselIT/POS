@@ -1076,6 +1076,30 @@ namespace Evensel.RetailService
         private global::System.String _Phone;
         partial void OnPhoneChanging(global::System.String value);
         partial void OnPhoneChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String mobile
+        {
+            get
+            {
+                return _mobile;
+            }
+            set
+            {
+                OnmobileChanging(value);
+                ReportPropertyChanging("mobile");
+                _mobile = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("mobile");
+                OnmobileChanged();
+            }
+        }
+        private global::System.String _mobile;
+        partial void OnmobileChanging(global::System.String value);
+        partial void OnmobileChanged();
 
         #endregion
     

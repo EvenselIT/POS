@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Evensel.RetailService;
+using EvenselIT.UI;
+using EvenselIT.UI.Global;
 
 namespace EvenselPOS
 {
@@ -25,11 +27,39 @@ namespace EvenselPOS
         private void btnLogIn_Click(object sender, EventArgs e)
         {
             UserManager usrManager = new UserManager();
-            List<Role> usrRolesList = usrManager.UserAuthentication(txtUserName.ToString(), txtPassWord.ToString());
+            List<Role> usrRolesList = usrManager.UserAuthentication(txtUserName.Text, txtPassWord.Text);
             if (usrRolesList != null)
             {
-                //if userRoleList is not null then uesr is a valid user cond....
-                MessageBox.Show("Valid User");//test
+                GlobalClass.UserID = usrManager.GetUserID(txtUserName.Text);
+                GlobalClass.UserName = txtUserName.Text;
+
+                foreach (var role in usrRolesList)
+                {
+                    int roleID = role.ID;
+
+                    switch (roleID)
+                    {
+                        case 1:
+                            {
+                                this.Hide();
+                                mainForm mForm = new mainForm();
+                                mForm.Show();
+                                break;
+                            }
+                        case 2:
+                            {
+                                Console.WriteLine("Test");
+                                break;
+                            }
+                    }
+                }
+
+            }
+            else
+            {
+                txtUserName.Text = "";
+                txtPassWord.Text = "";
+                MessageBox.Show("Invalid User");
             }
         }
     }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="EvenselPOSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="EvenselPOSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="EvenselPOSModelStoreContainer">
           <EntitySet Name="Category" EntityType="EvenselPOSModel.Store.Category" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Config" EntityType="EvenselPOSModel.Store.Config" store:Type="Tables" Schema="dbo" />
@@ -90,6 +90,7 @@
           <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="mobile" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Gift">
           <Key>
@@ -678,6 +679,7 @@
           <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Phone" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Sales" Relationship="EvenselPOSModel.FK_Sales_Customer" FromRole="Customer" ToRole="Sale" />
+          <Property Type="String" Name="mobile" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Sales_Customer">
           <End Type="EvenselPOSModel.Customer" Role="Customer" Multiplicity="1" />
@@ -905,6 +907,7 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="EvenselPOSModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />

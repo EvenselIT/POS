@@ -89,6 +89,28 @@ namespace Evensel.RetailService
         }
 
         /// <summary>
+        /// Retrive User ID When User Name is Given
+        /// </summary>
+        /// <param name="userName">Current UserName of the User</param>
+        /// <returns>Return User ID If Found Else Retrun null</returns>
+        public string GetUserID(string userName)
+        {
+            using (EvenselPOSEntities context = new EvenselPOSEntities())
+            {
+                var query = from i in context.Users
+                            where i.UserName == userName
+                            select i.ID;
+
+                if (query.Count() != 0)
+                {
+                    return query.FirstOrDefault().ToString();
+                }
+
+                return null;
+            }
+        }
+
+        /// <summary>
         /// User Authentcation and retrive the level of roles assigned to the user 
         /// </summary>
         /// <param name="username">UserName</param>
@@ -106,7 +128,7 @@ namespace Evensel.RetailService
                 if (usrId.Count() != 0)
                 {
                     var roleIds = from n in context.UserRoles
-                                where n.UserID.Equals(usrId)
+                                where n.UserID == usrId.FirstOrDefault()
                                 select n.RoleID;
                     
                     if (roleIds.Count() != 0)
@@ -119,7 +141,7 @@ namespace Evensel.RetailService
                             
                             if (usrRole != null)
                             {
-                                UsersroleList.Add((Role)usrRole);
+                                UsersroleList.Add((Role)usrRole.FirstOrDefault());
                             }
                         }
 
