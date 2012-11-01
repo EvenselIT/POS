@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Evensel.RetailService;
+using EvenselIT.UI.Global;
 
 namespace EvenselIT.UI.subForms
 {
     public partial class subFormSupplierManagement : Form
     {
-        SupplierManager supMgr = null;
+        SupplierManager supMgr = new SupplierManager();
+        private int tabIndex = -1;
 
         public subFormSupplierManagement()
         {
@@ -30,7 +32,7 @@ namespace EvenselIT.UI.subForms
             supplier.AccountNo = txtSupplierTelephoneNo.Text;
             // supplier email is not captured form user
 
-            supMgr = new SupplierManager(); // check values added sucessfully - no exception handling in back end code
+            // check values added sucessfully - no exception handling in back end code
             if (supMgr.AddNew(supplier) == 1)
             {
                 MessageBox.Show(this, "New Supplier Added Sucessfully", "Suceed", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -48,7 +50,6 @@ namespace EvenselIT.UI.subForms
             updateSupplier.Tel = txtSupTelephoneNo.Text;
             updateSupplier.AccountNo = txtSupAccNo.Text;
 
-            supMgr = new SupplierManager();
             if (supMgr.Update(updateSupplier) == true)
             {
                 MessageBox.Show(this, "Supplier Updated Sucessfully", "Suceed", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -77,6 +78,19 @@ namespace EvenselIT.UI.subForms
                 txtSupTelephoneNo.Text = "";
             }
 
+        }
+
+        private void subFormSupplierManagement_Load(object sender, EventArgs e)
+        {
+            tabIndex = tabControlSupplierManagement.SelectedIndex;
+            if (tabIndex == 0)
+            {
+                dGridAllSuppliers.DataSource = supMgr.SelectAll();
+            }
+            if (tabIndex == 1)
+            {
+                txtSupplierId.Text = Convert.ToString(supMgr.getMaxSupplierID() + 1);
+            }
         }
     }
 }

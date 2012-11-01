@@ -87,5 +87,21 @@ namespace Evensel.RetailService
                 return null;
             }
         }
+
+        public int getMaxSupplierID()
+        {
+            int max = -1;
+            using (EvenselPOSEntities context = new EvenselPOSEntities())
+            {
+                var query = from n in context.Suppliers
+                            select n;
+                if (query != null && query.Count() > 0)
+                {
+                    max = query.Max(a => a.ID);
+                }
+            }
+
+            return max;
+        }
     }
 }

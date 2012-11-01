@@ -35,7 +35,10 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControlSupplierManagement = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnSelectSupplier = new System.Windows.Forms.Button();
+            this.dGridAllSuppliers = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnAddSupplier = new System.Windows.Forms.Button();
             this.txtSupplierAccNo = new System.Windows.Forms.TextBox();
             this.txtSupplierTelephoneNo = new System.Windows.Forms.TextBox();
             this.rtxtSupplierAddress = new System.Windows.Forms.RichTextBox();
@@ -47,6 +50,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnUpdateSupplier = new System.Windows.Forms.Button();
             this.txtSupAccNo = new System.Windows.Forms.TextBox();
             this.txtSupTelephoneNo = new System.Windows.Forms.TextBox();
             this.rtxtSupAddress = new System.Windows.Forms.RichTextBox();
@@ -57,16 +61,16 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.dGridAllSuppliers = new System.Windows.Forms.DataGridView();
-            this.btnSelectSupplier = new System.Windows.Forms.Button();
-            this.btnAddSupplier = new System.Windows.Forms.Button();
-            this.btnUpdateSupplier = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtSupplierEmail = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtSupEmail = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.tabControlSupplierManagement.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dGridAllSuppliers)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dGridAllSuppliers)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -122,8 +126,36 @@
             this.tabPage1.Text = "Select Supplier";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btnSelectSupplier
+            // 
+            this.btnSelectSupplier.Image = global::EvenselIT.UI.Properties.Resources.select;
+            this.btnSelectSupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSelectSupplier.Location = new System.Drawing.Point(245, 326);
+            this.btnSelectSupplier.Name = "btnSelectSupplier";
+            this.btnSelectSupplier.Size = new System.Drawing.Size(142, 48);
+            this.btnSelectSupplier.TabIndex = 1;
+            this.btnSelectSupplier.Text = "Select Supplier";
+            this.btnSelectSupplier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSelectSupplier.UseVisualStyleBackColor = true;
+            // 
+            // dGridAllSuppliers
+            // 
+            this.dGridAllSuppliers.AllowUserToAddRows = false;
+            this.dGridAllSuppliers.CausesValidation = false;
+            this.dGridAllSuppliers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGridAllSuppliers.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dGridAllSuppliers.Location = new System.Drawing.Point(3, 3);
+            this.dGridAllSuppliers.MultiSelect = false;
+            this.dGridAllSuppliers.Name = "dGridAllSuppliers";
+            this.dGridAllSuppliers.ReadOnly = true;
+            this.dGridAllSuppliers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dGridAllSuppliers.Size = new System.Drawing.Size(648, 317);
+            this.dGridAllSuppliers.TabIndex = 1;
+            // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.txtSupplierEmail);
+            this.tabPage2.Controls.Add(this.label11);
             this.tabPage2.Controls.Add(this.btnAddSupplier);
             this.tabPage2.Controls.Add(this.txtSupplierAccNo);
             this.tabPage2.Controls.Add(this.txtSupplierTelephoneNo);
@@ -143,6 +175,19 @@
             this.tabPage2.Text = "Add New Supplier";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btnAddSupplier
+            // 
+            this.btnAddSupplier.Image = ((System.Drawing.Image)(resources.GetObject("btnAddSupplier.Image")));
+            this.btnAddSupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddSupplier.Location = new System.Drawing.Point(263, 306);
+            this.btnAddSupplier.Name = "btnAddSupplier";
+            this.btnAddSupplier.Size = new System.Drawing.Size(127, 59);
+            this.btnAddSupplier.TabIndex = 10;
+            this.btnAddSupplier.Text = "Add Supplier";
+            this.btnAddSupplier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddSupplier.UseVisualStyleBackColor = true;
+            this.btnAddSupplier.Click += new System.EventHandler(this.btnAddSupplier_Click);
+            // 
             // txtSupplierAccNo
             // 
             this.txtSupplierAccNo.Location = new System.Drawing.Point(206, 266);
@@ -161,7 +206,7 @@
             // 
             this.rtxtSupplierAddress.Location = new System.Drawing.Point(206, 127);
             this.rtxtSupplierAddress.Name = "rtxtSupplierAddress";
-            this.rtxtSupplierAddress.Size = new System.Drawing.Size(184, 78);
+            this.rtxtSupplierAddress.Size = new System.Drawing.Size(184, 64);
             this.rtxtSupplierAddress.TabIndex = 7;
             this.rtxtSupplierAddress.Text = "";
             // 
@@ -226,6 +271,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.txtSupEmail);
+            this.tabPage3.Controls.Add(this.label12);
             this.tabPage3.Controls.Add(this.btnUpdateSupplier);
             this.tabPage3.Controls.Add(this.txtSupAccNo);
             this.tabPage3.Controls.Add(this.txtSupTelephoneNo);
@@ -245,6 +292,19 @@
             this.tabPage3.Text = "Edit Suppliers Details";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // btnUpdateSupplier
+            // 
+            this.btnUpdateSupplier.Image = global::EvenselIT.UI.Properties.Resources.edit;
+            this.btnUpdateSupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUpdateSupplier.Location = new System.Drawing.Point(265, 305);
+            this.btnUpdateSupplier.Name = "btnUpdateSupplier";
+            this.btnUpdateSupplier.Size = new System.Drawing.Size(127, 59);
+            this.btnUpdateSupplier.TabIndex = 20;
+            this.btnUpdateSupplier.Text = "Update Supplier";
+            this.btnUpdateSupplier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnUpdateSupplier.UseVisualStyleBackColor = true;
+            this.btnUpdateSupplier.Click += new System.EventHandler(this.btnUpdateSupplier_Click);
+            // 
             // txtSupAccNo
             // 
             this.txtSupAccNo.Location = new System.Drawing.Point(208, 268);
@@ -263,7 +323,7 @@
             // 
             this.rtxtSupAddress.Location = new System.Drawing.Point(208, 129);
             this.rtxtSupAddress.Name = "rtxtSupAddress";
-            this.rtxtSupAddress.Size = new System.Drawing.Size(184, 78);
+            this.rtxtSupAddress.Size = new System.Drawing.Size(184, 64);
             this.rtxtSupAddress.TabIndex = 17;
             this.rtxtSupAddress.Text = "";
             // 
@@ -326,57 +386,37 @@
             this.label10.TabIndex = 10;
             this.label10.Text = "ID";
             // 
-            // dGridAllSuppliers
+            // label11
             // 
-            this.dGridAllSuppliers.AllowUserToAddRows = false;
-            this.dGridAllSuppliers.CausesValidation = false;
-            this.dGridAllSuppliers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGridAllSuppliers.Cursor = System.Windows.Forms.Cursors.Default;
-            this.dGridAllSuppliers.Location = new System.Drawing.Point(3, 3);
-            this.dGridAllSuppliers.MultiSelect = false;
-            this.dGridAllSuppliers.Name = "dGridAllSuppliers";
-            this.dGridAllSuppliers.ReadOnly = true;
-            this.dGridAllSuppliers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dGridAllSuppliers.Size = new System.Drawing.Size(648, 317);
-            this.dGridAllSuppliers.TabIndex = 1;
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(48, 206);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(32, 13);
+            this.label11.TabIndex = 11;
+            this.label11.Text = "Email";
             // 
-            // btnSelectSupplier
+            // txtSupplierEmail
             // 
-            this.btnSelectSupplier.Image = global::EvenselIT.UI.Properties.Resources.select;
-            this.btnSelectSupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSelectSupplier.Location = new System.Drawing.Point(245, 326);
-            this.btnSelectSupplier.Name = "btnSelectSupplier";
-            this.btnSelectSupplier.Size = new System.Drawing.Size(142, 48);
-            this.btnSelectSupplier.TabIndex = 1;
-            this.btnSelectSupplier.Text = "Select Supplier";
-            this.btnSelectSupplier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSelectSupplier.UseVisualStyleBackColor = true;
+            this.txtSupplierEmail.Location = new System.Drawing.Point(206, 203);
+            this.txtSupplierEmail.Name = "txtSupplierEmail";
+            this.txtSupplierEmail.Size = new System.Drawing.Size(184, 20);
+            this.txtSupplierEmail.TabIndex = 12;
             // 
-            // btnAddSupplier
+            // label12
             // 
-            this.btnAddSupplier.Image = ((System.Drawing.Image)(resources.GetObject("btnAddSupplier.Image")));
-            this.btnAddSupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddSupplier.Location = new System.Drawing.Point(263, 306);
-            this.btnAddSupplier.Name = "btnAddSupplier";
-            this.btnAddSupplier.Size = new System.Drawing.Size(127, 59);
-            this.btnAddSupplier.TabIndex = 10;
-            this.btnAddSupplier.Text = "Add Supplier";
-            this.btnAddSupplier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddSupplier.UseVisualStyleBackColor = true;
-            this.btnAddSupplier.Click += new System.EventHandler(this.btnAddSupplier_Click);
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(50, 211);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(32, 13);
+            this.label12.TabIndex = 21;
+            this.label12.Text = "Email";
             // 
-            // btnUpdateSupplier
+            // txtSupEmail
             // 
-            this.btnUpdateSupplier.Image = global::EvenselIT.UI.Properties.Resources.edit;
-            this.btnUpdateSupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdateSupplier.Location = new System.Drawing.Point(265, 305);
-            this.btnUpdateSupplier.Name = "btnUpdateSupplier";
-            this.btnUpdateSupplier.Size = new System.Drawing.Size(127, 59);
-            this.btnUpdateSupplier.TabIndex = 20;
-            this.btnUpdateSupplier.Text = "Update Supplier";
-            this.btnUpdateSupplier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUpdateSupplier.UseVisualStyleBackColor = true;
-            this.btnUpdateSupplier.Click += new System.EventHandler(this.btnUpdateSupplier_Click);
+            this.txtSupEmail.Location = new System.Drawing.Point(208, 208);
+            this.txtSupEmail.Name = "txtSupEmail";
+            this.txtSupEmail.Size = new System.Drawing.Size(184, 20);
+            this.txtSupEmail.TabIndex = 22;
             // 
             // subFormSupplierManagement
             // 
@@ -388,15 +428,16 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "subFormSupplierManagement";
             this.Text = "Supplier Management";
+            this.Load += new System.EventHandler(this.subFormSupplierManagement_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControlSupplierManagement.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dGridAllSuppliers)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dGridAllSuppliers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -436,5 +477,9 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridView dGridAllSuppliers;
         private System.Windows.Forms.Button btnSelectSupplier;
+        private System.Windows.Forms.TextBox txtSupplierEmail;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtSupEmail;
+        private System.Windows.Forms.Label label12;
     }
 }

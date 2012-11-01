@@ -112,7 +112,7 @@ namespace Evensel.RetailService
 
                 if (query != null && query.Count()>0)
                 {
-                    max = query.Max(a=>a.ID);
+                    max = query.Max(a=>a.ID);                  
                 }
             }
             return max;
