@@ -92,5 +92,22 @@ namespace EvenselIT.UI.subForms
                 txtSupplierId.Text = Convert.ToString(supMgr.getMaxSupplierID() + 1);
             }
         }
+
+        private void contextMenuStrip1_Click(object sender, EventArgs e)
+        {
+            string id = dGridAllSuppliers.CurrentRow.Cells["ID"].Value.ToString();
+            DialogResult userCommand = MessageBox.Show(this, "Confirm Delete Supplier\nSupplier ID :" + id, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (userCommand == DialogResult.Yes)
+            {
+                bool? methodReturn = supMgr.Delete(Convert.ToInt32(id));
+                if (methodReturn.Equals(true))
+                {
+                    MessageBox.Show(this, "Sucessfully Delete Supplier", "Suceed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dGridAllSuppliers.DataBindings.Clear();
+                    dGridAllSuppliers.DataSource = supMgr.SelectAll();
+                    dGridAllSuppliers.Refresh();
+                }
+            }
+        }
     }
 }

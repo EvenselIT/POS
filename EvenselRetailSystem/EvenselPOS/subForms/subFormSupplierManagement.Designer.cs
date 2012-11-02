@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(subFormSupplierManagement));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControlSupplierManagement = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnSelectSupplier = new System.Windows.Forms.Button();
             this.dGridAllSuppliers = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteSupplierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.txtSupplierEmail = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.btnAddSupplier = new System.Windows.Forms.Button();
             this.txtSupplierAccNo = new System.Windows.Forms.TextBox();
             this.txtSupplierTelephoneNo = new System.Windows.Forms.TextBox();
@@ -50,6 +51,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.txtSupEmail = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.btnUpdateSupplier = new System.Windows.Forms.Button();
             this.txtSupAccNo = new System.Windows.Forms.TextBox();
             this.txtSupTelephoneNo = new System.Windows.Forms.TextBox();
@@ -61,47 +64,13 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtSupplierEmail = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtSupEmail = new System.Windows.Forms.TextBox();
-            this.menuStrip1.SuspendLayout();
             this.tabControlSupplierManagement.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGridAllSuppliers)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(687, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.editToolStripMenuItem.Text = "Edit";
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
-            this.helpToolStripMenuItem.Text = "Help";
             // 
             // tabControlSupplierManagement
             // 
@@ -143,14 +112,30 @@
             this.dGridAllSuppliers.AllowUserToAddRows = false;
             this.dGridAllSuppliers.CausesValidation = false;
             this.dGridAllSuppliers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGridAllSuppliers.ContextMenuStrip = this.contextMenuStrip1;
             this.dGridAllSuppliers.Cursor = System.Windows.Forms.Cursors.Default;
             this.dGridAllSuppliers.Location = new System.Drawing.Point(3, 3);
             this.dGridAllSuppliers.MultiSelect = false;
             this.dGridAllSuppliers.Name = "dGridAllSuppliers";
             this.dGridAllSuppliers.ReadOnly = true;
+            this.dGridAllSuppliers.RowTemplate.ContextMenuStrip = this.contextMenuStrip1;
             this.dGridAllSuppliers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dGridAllSuppliers.Size = new System.Drawing.Size(648, 317);
             this.dGridAllSuppliers.TabIndex = 1;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteSupplierToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
+            this.contextMenuStrip1.Click += new System.EventHandler(this.contextMenuStrip1_Click);
+            // 
+            // deleteSupplierToolStripMenuItem
+            // 
+            this.deleteSupplierToolStripMenuItem.Name = "deleteSupplierToolStripMenuItem";
+            this.deleteSupplierToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.deleteSupplierToolStripMenuItem.Text = "Delete Supplier";
             // 
             // tabPage2
             // 
@@ -174,6 +159,22 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Add New Supplier";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // txtSupplierEmail
+            // 
+            this.txtSupplierEmail.Location = new System.Drawing.Point(206, 203);
+            this.txtSupplierEmail.Name = "txtSupplierEmail";
+            this.txtSupplierEmail.Size = new System.Drawing.Size(184, 20);
+            this.txtSupplierEmail.TabIndex = 12;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(48, 206);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(32, 13);
+            this.label11.TabIndex = 11;
+            this.label11.Text = "Email";
             // 
             // btnAddSupplier
             // 
@@ -292,6 +293,22 @@
             this.tabPage3.Text = "Edit Suppliers Details";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // txtSupEmail
+            // 
+            this.txtSupEmail.Location = new System.Drawing.Point(208, 208);
+            this.txtSupEmail.Name = "txtSupEmail";
+            this.txtSupEmail.Size = new System.Drawing.Size(184, 20);
+            this.txtSupEmail.TabIndex = 22;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(50, 211);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(32, 13);
+            this.label12.TabIndex = 21;
+            this.label12.Text = "Email";
+            // 
             // btnUpdateSupplier
             // 
             this.btnUpdateSupplier.Image = global::EvenselIT.UI.Properties.Resources.edit;
@@ -386,69 +403,29 @@
             this.label10.TabIndex = 10;
             this.label10.Text = "ID";
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(48, 206);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(32, 13);
-            this.label11.TabIndex = 11;
-            this.label11.Text = "Email";
-            // 
-            // txtSupplierEmail
-            // 
-            this.txtSupplierEmail.Location = new System.Drawing.Point(206, 203);
-            this.txtSupplierEmail.Name = "txtSupplierEmail";
-            this.txtSupplierEmail.Size = new System.Drawing.Size(184, 20);
-            this.txtSupplierEmail.TabIndex = 12;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(50, 211);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(32, 13);
-            this.label12.TabIndex = 21;
-            this.label12.Text = "Email";
-            // 
-            // txtSupEmail
-            // 
-            this.txtSupEmail.Location = new System.Drawing.Point(208, 208);
-            this.txtSupEmail.Name = "txtSupEmail";
-            this.txtSupEmail.Size = new System.Drawing.Size(184, 20);
-            this.txtSupEmail.TabIndex = 22;
-            // 
             // subFormSupplierManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(687, 471);
             this.Controls.Add(this.tabControlSupplierManagement);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
             this.Name = "subFormSupplierManagement";
             this.Text = "Supplier Management";
             this.Load += new System.EventHandler(this.subFormSupplierManagement_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.tabControlSupplierManagement.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dGridAllSuppliers)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.TabControl tabControlSupplierManagement;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -481,5 +458,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtSupEmail;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem deleteSupplierToolStripMenuItem;
     }
 }
