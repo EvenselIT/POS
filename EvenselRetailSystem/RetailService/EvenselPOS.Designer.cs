@@ -24,8 +24,8 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("EvenselPOSModel", "FK_InvoicePayment_Invoice", "Invoice", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Evensel.RetailService.Invoice), "InvoicePayment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Evensel.RetailService.InvoicePayment), true)]
 [assembly: EdmRelationshipAttribute("EvenselPOSModel", "FK_Sales_Invoice", "Invoice", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Evensel.RetailService.Invoice), "Sale", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Evensel.RetailService.Sale), true)]
 [assembly: EdmRelationshipAttribute("EvenselPOSModel", "FK_Sales_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Evensel.RetailService.Customer), "Sale", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Evensel.RetailService.Sale), true)]
-[assembly: EdmRelationshipAttribute("EvenselPOSModel", "FK_Inventory_Item", "Item", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Evensel.RetailService.Item), "Inventory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Evensel.RetailService.Inventory), true)]
 [assembly: EdmRelationshipAttribute("EvenselPOSModel", "FK_SalesDetails_Sales", "Sale", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Evensel.RetailService.Sale), "SalesDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Evensel.RetailService.SalesDetail), true)]
+[assembly: EdmRelationshipAttribute("EvenselPOSModel", "FK_Inventory_Item", "Item", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Evensel.RetailService.Item), "Inventory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Evensel.RetailService.Inventory), true)]
 
 #endregion
 
@@ -384,22 +384,6 @@ namespace Evensel.RetailService
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Item> Items
-        {
-            get
-            {
-                if ((_Items == null))
-                {
-                    _Items = base.CreateObjectSet<Item>("Items");
-                }
-                return _Items;
-            }
-        }
-        private ObjectSet<Item> _Items;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<SalesDetail> SalesDetails
         {
             get
@@ -428,6 +412,22 @@ namespace Evensel.RetailService
             }
         }
         private ObjectSet<Config> _Configs;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Item> Items
+        {
+            get
+            {
+                if ((_Items == null))
+                {
+                    _Items = base.CreateObjectSet<Item>("Items");
+                }
+                return _Items;
+            }
+        }
+        private ObjectSet<Item> _Items;
 
         #endregion
         #region AddTo Methods
@@ -585,14 +585,6 @@ namespace Evensel.RetailService
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Items EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToItems(Item item)
-        {
-            base.AddObject("Items", item);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the SalesDetails EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToSalesDetails(SalesDetail salesDetail)
@@ -606,6 +598,14 @@ namespace Evensel.RetailService
         public void AddToConfigs(Config config)
         {
             base.AddObject("Configs", config);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Items EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToItems(Item item)
+        {
+            base.AddObject("Items", item);
         }
 
         #endregion
@@ -1100,6 +1100,54 @@ namespace Evensel.RetailService
         private global::System.String _mobile;
         partial void OnmobileChanging(global::System.String value);
         partial void OnmobileChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Mobile
+        {
+            get
+            {
+                return _Mobile;
+            }
+            set
+            {
+                OnMobileChanging(value);
+                ReportPropertyChanging("Mobile");
+                _Mobile = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Mobile");
+                OnMobileChanged();
+            }
+        }
+        private global::System.String _Mobile;
+        partial void OnMobileChanging(global::System.String value);
+        partial void OnMobileChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CustomerID
+        {
+            get
+            {
+                return _CustomerID;
+            }
+            set
+            {
+                OnCustomerIDChanging(value);
+                ReportPropertyChanging("CustomerID");
+                _CustomerID = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CustomerID");
+                OnCustomerIDChanged();
+            }
+        }
+        private global::System.String _CustomerID;
+        partial void OnCustomerIDChanging(global::System.String value);
+        partial void OnCustomerIDChanged();
 
         #endregion
     
@@ -2343,7 +2391,7 @@ namespace Evensel.RetailService
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String IsActive
+        public Nullable<global::System.Boolean> IsActive
         {
             get
             {
@@ -2353,13 +2401,13 @@ namespace Evensel.RetailService
             {
                 OnIsActiveChanging(value);
                 ReportPropertyChanging("IsActive");
-                _IsActive = StructuralObject.SetValidValue(value, true);
+                _IsActive = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("IsActive");
                 OnIsActiveChanged();
             }
         }
-        private global::System.String _IsActive;
-        partial void OnIsActiveChanging(global::System.String value);
+        private Nullable<global::System.Boolean> _IsActive;
+        partial void OnIsActiveChanging(Nullable<global::System.Boolean> value);
         partial void OnIsActiveChanged();
     
         /// <summary>
@@ -2385,6 +2433,30 @@ namespace Evensel.RetailService
         private Nullable<global::System.Int32> _CategoryID;
         partial void OnCategoryIDChanging(Nullable<global::System.Int32> value);
         partial void OnCategoryIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
 
         #endregion
     

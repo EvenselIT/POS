@@ -83,6 +83,24 @@ namespace Evensel.RetailService
 
         #endregion
 
+        /// <summary>
+        /// Get Maximum Item ID
+        /// </summary>
+        /// <returns>Returns Max ID</returns>
+        public int getMaxID()
+        {
+            using (EvenselPOSEntities context = new EvenselPOSEntities())
+            {
+                var query = (from i in context.Items
+                             select i.ID);
 
+                if (query.Count() == 0)
+                {
+                    return 0;
+                }
+
+                return query.Max();
+            }
+        }
     }
 }
